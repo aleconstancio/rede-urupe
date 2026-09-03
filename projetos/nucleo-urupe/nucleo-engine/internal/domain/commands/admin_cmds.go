@@ -218,9 +218,14 @@ func handleServerStats(repo *sqlite.Repository, guildID, channelID string) (stri
 	return b.String(), nil
 }
 
+type ChannelSpec struct {
+	Name string
+	Type discordgo.ChannelType
+}
+
 type CategorySpec struct {
 	Name     string
-	Channels []string
+	Channels []ChannelSpec
 }
 
 func handleProvision5x5(s *discordgo.Session, guildID string) (string, error) {
@@ -230,53 +235,43 @@ func handleProvision5x5(s *discordgo.Session, guildID string) (string, error) {
 
 	matrix := []CategorySpec{
 		{
-			Name: "🏛️ 1. QG & GOVERNANÇA",
-			Channels: []string{
-				"anuncios-oficiais",
-				"qg-geral",
-				"diretrizes-e-regras",
-				"assembleia-e-pautas",
-				"micelia-comandos",
+			Name: "📢 1. RECEPÇÃO & ANÚNCIOS",
+			Channels: []ChannelSpec{
+				{Name: "boas-vindas", Type: discordgo.ChannelTypeGuildText},
+				{Name: "regras-e-diretrizes", Type: discordgo.ChannelTypeGuildText},
+				{Name: "anuncios-oficiais", Type: discordgo.ChannelTypeGuildText},
 			},
 		},
 		{
-			Name: "📖 2. FORMAÇÃO & IDEOLOGIA",
-			Channels: []string{
-				"biblioteca-urupe",
-				"debates-e-teoria",
-				"agroecologia-e-terra",
-				"historia-e-luta",
-				"oficinas-e-cursos",
+			Name: "🔊 2. TRANSMISSÕES & SALAS DE VOZ",
+			Channels: []ChannelSpec{
+				{Name: "🔊 Rádio Urupê (Ao Vivo)", Type: discordgo.ChannelTypeGuildVoice},
+				{Name: "🔊 Assembleia Geral", Type: discordgo.ChannelTypeGuildVoice},
+				{Name: "🔊 Sala de Estudos & Debates", Type: discordgo.ChannelTypeGuildVoice},
 			},
 		},
 		{
-			Name: "⚔️ 3. GUERRILHA DIGITAL & AGITPROP",
-			Channels: []string{
-				"central-de-brigadas",
-				"design-e-memes",
-				"audiovisual-e-cortes",
-				"disparo-e-campanhas",
-				"ciberseguranca",
+			Name: "🍄 3. RECEPTÁCULO DA MICÉLIA",
+			Channels: []ChannelSpec{
+				{Name: "fale-com-a-micelia", Type: discordgo.ChannelTypeGuildText},
+				{Name: "memorias-da-frente", Type: discordgo.ChannelTypeGuildText},
 			},
 		},
 		{
-			Name: "🌐 4. REDES SOCIAIS & OBSERVAÇÃO",
-			Channels: []string{
-				"instagram-e-tiktok",
-				"x-e-bluesky",
-				"podcasts-e-midia",
-				"observatorio-e-clipping",
-				"metricas-e-impacto",
+			Name: "💬 4. FÓRUNS TEMÁTICOS OFICIAIS",
+			Channels: []ChannelSpec{
+				{Name: "formacao-e-teoria-ecossocialista", Type: discordgo.ChannelTypeGuildForum},
+				{Name: "acao-direta-e-brigadas", Type: discordgo.ChannelTypeGuildForum},
+				{Name: "soberania-tecnologica-e-rizoma", Type: discordgo.ChannelTypeGuildForum},
+				{Name: "arte-cultura-e-memetica", Type: discordgo.ChannelTypeGuildForum},
+				{Name: "agroecologia-e-territorio", Type: discordgo.ChannelTypeGuildForum},
 			},
 		},
 		{
-			Name: "🌿 5. CULTURA & COMUNIDADE URUPÊ",
-			Channels: []string{
-				"ecos-do-micelio",
-				"arte-e-literatura",
-				"musica-e-playlists",
-				"acolhimento-e-ajuda",
-				"cafe-e-conversas",
+			Name: "⚔️ 5. BRIGADAS & SUPORTE",
+			Channels: []ChannelSpec{
+				{Name: "sala-de-imprensa-spore-ops", Type: discordgo.ChannelTypeGuildText},
+				{Name: "ajuda-e-suporte-tecnico", Type: discordgo.ChannelTypeGuildText},
 			},
 		},
 	}
@@ -294,10 +289,10 @@ func handleProvision5x5(s *discordgo.Session, guildID string) (string, error) {
 		}
 		createdCategories++
 
-		for _, chName := range catSpec.Channels {
+		for _, chSpec := range catSpec.Channels {
 			_, err := s.GuildChannelCreateComplex(guildID, discordgo.GuildChannelCreateData{
-				Name:     chName,
-				Type:     discordgo.ChannelTypeGuildText,
+				Name:     chSpec.Name,
+				Type:     chSpec.Type,
 				ParentID: cat.ID,
 			})
 			if err == nil {
@@ -306,5 +301,5 @@ func handleProvision5x5(s *discordgo.Session, guildID string) (string, error) {
 		}
 	}
 
-	return fmt.Sprintf(" Matriz Ontológica 5x5 da Rede Urupê provisionada com sucesso!\n- **%d Categorias** criadas\n- **%d Canais de Texto** estruturados.", createdCategories, createdChannels), nil
+	return fmt.Sprintf(" Matriz da Rede Urupê provisionada com sucesso no Discord!\n- **%d Categorias** criadas\n- **%d Canais & Fóruns** estruturados (Fóruns, Voz, Anúncios, Micélia e Brigadas).", createdCategories, createdChannels), nil
 }
