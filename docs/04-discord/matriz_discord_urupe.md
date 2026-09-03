@@ -35,6 +35,7 @@
 
 ### 3. `CANAIS CULTURAIS`
 - `📰│notícias` — Clipping de notícias, fatos do day e jornalismo popular.
+- `📷│fotografia` — Fotografia popular, fotorreportagem, registros de campo e estética visual.
 - `📹│vídeos` — Produção audiovisual, vlogs e documentários.
 - `🎮│jogos` — Cultura de jogos, simulação e gamedev soberano.
 - `🎬│cinema` — Análises cinematográficas e mostras de filmes.

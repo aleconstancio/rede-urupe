@@ -263,6 +263,7 @@ func handleProvision5x5(s *discordgo.Session, guildID string) (string, error) {
 			Name: "🎨 CANAIS CULTURAIS",
 			Channels: []ChannelSpec{
 				{Name: "📰│noticias", Type: discordgo.ChannelTypeGuildText},
+				{Name: "📷│fotografia", Type: discordgo.ChannelTypeGuildText},
 				{Name: "📹│videos", Type: discordgo.ChannelTypeGuildText},
 				{Name: "🎮│jogos", Type: discordgo.ChannelTypeGuildText},
 				{Name: "🎬│cinema", Type: discordgo.ChannelTypeGuildText},
