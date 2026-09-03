@@ -11,10 +11,16 @@ func (r *Repository) initSchema() error {
 }
 
 func (r *Repository) seedInitialData() error {
+	if err := r.ensureCMSTables(); err != nil {
+		return err
+	}
 	if err := r.ensureV33PersonaSeed(); err != nil {
 		return err
 	}
 	if err := r.ensureAIreliusSeed(); err != nil {
+		return err
+	}
+	if err := r.ensureCMSArticlesSeed(); err != nil {
 		return err
 	}
 	return r.ensureShowcaseProjects()

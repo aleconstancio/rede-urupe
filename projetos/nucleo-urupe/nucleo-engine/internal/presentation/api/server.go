@@ -85,6 +85,10 @@ func (s *Server) Start() {
 	mux.HandleFunc("/api/projects", s.handleShowcaseProjects)
 	mux.HandleFunc("/api/projects/", s.handleShowcaseProjectBySlug)
 	mux.HandleFunc("/api/channels", s.handleChannels)
+	mux.HandleFunc("/api/cms/articles", handleCMSArticlesList(s.repo))
+	mux.HandleFunc("/api/cms/article", handleCMSArticleGet(s.repo))
+	mux.HandleFunc("/api/cms/article/save", handleCMSArticleSave(s.repo))
+	mux.HandleFunc("/api/cms/article/delete", handleCMSArticleDelete(s.repo))
 
 	// Serve Quartz knowledge map at /knowledge/*
 	knowledgePath := "internal/presentation/web/knowledge_dist"
