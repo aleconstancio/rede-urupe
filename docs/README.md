@@ -31,6 +31,7 @@ Documentos que definem o imperativo histórico e a visão ecossocialista da Fren
 ## 🏗️ 2. Arquitetura & Engenharia (`docs/02-arquitetura/`)
 Desenho técnico da infraestrutura descentralizada, backend Go e nó Rizoma P2P.
 
+- 📄 [convocacao.pdf](file:///home/ale/Projects/rede-urupe/docs/02-arquitetura/convocacao.pdf) — **[Asset Pôster Convocação]** PDF Agitprop v3 L-to-R com manifesto e arquitetura em 1 página.
 - 📄 [ramos_do_ecossistema.md](file:///home/ale/Projects/rede-urupe/docs/02-arquitetura/ramos_do_ecossistema.md) — **[Definição de Ramos]** Estrutura dos 2 ramos principais (Núcleo Urupê e App Urupê).
 - 📄 [revolucao_rede_urupe.md](file:///home/ale/Projects/rede-urupe/docs/02-arquitetura/revolucao_rede_urupe.md) — Manifesto técnico e revolução da arquitetura da malha.
 - 📄 [plano_fase2_rizoma_p2p.md](file:///home/ale/Projects/rede-urupe/docs/02-arquitetura/plano_fase2_rizoma_p2p.md) — Plano detalhado de engenharia P2P local-first em Rust (*Rizoma Box*).
