@@ -205,6 +205,17 @@ func (h *Handler) isDirectlyAddressed(m *discordgo.MessageCreate, botID string) 
 		return false
 	}
 
+	// 1. Reagir sempre se a mensagem for enviada no canal #micorriza ou #fale-com-a-micelia
+	if h.session != nil {
+		ch, err := h.session.State.Channel(m.ChannelID)
+		if err == nil && ch != nil {
+			chName := strings.ToLower(ch.Name)
+			if strings.Contains(chName, "micorriza") || strings.Contains(chName, "micelia") {
+				return true
+			}
+		}
+	}
+
 	if strings.Contains(m.Content, "<@"+botID+">") || strings.Contains(m.Content, "<@!"+botID+">") {
 		return true
 	}
