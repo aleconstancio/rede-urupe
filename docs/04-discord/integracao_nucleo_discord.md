@@ -42,26 +42,27 @@ graph TD
 
 ---
 
-# 🛠️ 2. Os 4 Pilares da Integração
+# 🛠️ 2. Os 4 Pilares da Integração Refinada
 
-### 1. 🌾 Recepção Automática (`🌱│apresentacoes`)
-- Quando um novo militante entra no servidor e posta uma mensagem no `#🌱│apresentacoes`, o `OnGuildMemberAdd` e `OnMessageCreate`:
-  1. Cria ou atualiza o perfil do membro no SQLite (`member_profiles`).
-  2. Envia uma mensagem acolhedora de boas-vindas com as diretrizes do manifesto.
-  3. Atribui o cargo inicial de militante.
+### 1. 🌱 Aprovação Manual no `#🌱│apresentacoes`
+- O canal `#🌱│apresentacoes` é o espaço de recepção e apresentação dos novos militantes.
+- **Aprovação 100% Manual por Administradores:** A Micélia não realiza triagem automatizada ou liberações automáticas de cargos. Os administradores e moderadores humanos leem as apresentações e atribuem os cargos manualmente.
 
-### 2. 🍄 Receptáculo da Micélia (`#🍄│micorriza`)
-- Todas as mensagens enviadas no `#🍄│micorriza` (ou marcando a IA) ativam automaticamente a resposta reativa da Micélia.
-- A mensagem é processada pelos **7 Estágios da Arandu Engine** (Gater ➔ Memory ➔ Persona Overlay ➔ Planner ➔ Executor ➔ Evaluator ➔ Learning).
-- As sínteses e aprendizados são salvos nas cápsulas de memória episódica no SQLite.
+### 2. 🍄 Atuação da Micélia 🍄 em Todos os Canais
+- A mascot **Micélia 🍄** possui contexto conceitual completo das 4 categorias de canais do servidor:
+  - **Canais Comuns** (`chat-comum`, `chat-memetico`, `chat-serio`, `micorriza`)
+  - **Canais Culturais** (`noticias`, `fotografia`, `videos`, `jogos`, `cinema`, `musica`, `literatura`)
+  - **Frentes de Estudo** (`filosofia`, `politica`, `pedagogia`, `ecologia`, `historia`, `humanidades`, `psicologia`, `tecnologia`, `engenharia`)
+  - **Frentes de Atuação** (`nucleo-urupe`, `rizoma`, `app-urupe`, `spore-ops`, `jatai-ops`)
+- A Micélia responde e interage reactivamente em qualquer um desses canais quando mencionada, chamada ou quando acionada por perguntas de militantes, respeitando o tom e o domínio de cada canal.
 
-### 3. 💬 Síntese Automatizada dos 5 Fóruns do Manifesto (`📌 INFORMAÇÕES`)
-- O worker `ForumWorker` analisa os tópicos criados nos 5 fóruns do manifesto (`i-mundo`, `ii-sociedade`, `iii-cosmotecnica`, `iv-praxis`, `v-espirito`).
-- Gera um resumo diário dos principais debates e disponibiliza no `#📢│anuncios`, no CMS do Site Público e no Admin (`nucleo-ui`).
+### 3. 📌 Fóruns de Informações Fixos & Sincronizados com o Manifesto
+- Os 5 Fóruns Temáticos (`i-mundo`, `ii-sociedade`, `iii-cosmotecnica`, `iv-praxis`, `v-espirito`) são **fixos, oficiais e informativos**.
+- **SEM Sínteses Diárias:** Não há geração de resumos automatizados diários nestes fóruns.
+- **Atualização Automática via Manifesto:** Conforme o Manifesto da Frente Urupê é editado ou atualizado no CMS/Núcleo Urupê, a Micélia e o backend sincronizam automaticamente os tópicos oficiais de cada capítulo do manifesto dentro dos fóruns.
 
 ### 4. 🎛️ Painel de Governança no Admin (`nucleo-ui`)
 - Pelo console Admin do Núcleo Urupê, os coordenadores podem:
-  - Monitorar o status do bot Discord em tempo real.
+  - Monitorar a saúde e latência do bot Discord em tempo real.
   - Editar os prompts de persona e diretrizes da Micélia.
-  - Inspecionar e aprovar propostas de aprendizado contínuo geradas pela IA.
-  - Disparar comunicados oficiais do CMS direto no canal `#📢│anuncios`.
+  - Sincronizar atualizações do Manifesto com os 5 Fóruns do Discord.

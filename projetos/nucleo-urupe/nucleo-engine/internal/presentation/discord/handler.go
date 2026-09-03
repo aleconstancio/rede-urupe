@@ -349,8 +349,7 @@ func (h *Handler) OnGuildMemberAdd(s *discordgo.Session, m *discordgo.GuildMembe
 		_, _ = h.repo.GetDB().Exec("INSERT INTO messages (discord_id, author, author_id, content, channel_id, category, is_bot, timestamp) VALUES (?, 'Maze', '0', ?, ?, 'system', 1, datetime('now'))",
 			fmt.Sprintf("member-join-%s", m.User.ID), msg, gc.ModLogChannelID)
 	}
-
-	h.sendWelcomeMessage(m)
+	// Aprovação no canal #apresentacoes é realizada 100% manualmente por administradores.
 }
 
 func (h *Handler) OnGuildMemberRemove(s *discordgo.Session, m *discordgo.GuildMemberRemove) {
