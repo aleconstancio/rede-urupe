@@ -275,6 +275,7 @@ func handleProvision5x5(s *discordgo.Session, guildID string) (string, error) {
 			Channels: []ChannelSpec{
 				{Name: "🏛️│filosofia", Type: discordgo.ChannelTypeGuildText},
 				{Name: "🚩│politica", Type: discordgo.ChannelTypeGuildText},
+				{Name: "🎓│pedagogia", Type: discordgo.ChannelTypeGuildText},
 				{Name: "🌿│ecologia", Type: discordgo.ChannelTypeGuildText},
 				{Name: "⏳│historia", Type: discordgo.ChannelTypeGuildText},
 				{Name: "🧠│humanidades", Type: discordgo.ChannelTypeGuildText},

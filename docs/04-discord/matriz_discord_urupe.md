@@ -46,6 +46,7 @@
 ### 4. `FRENTES DE ESTUDO`
 - `🏛️│filosofia` — Filosofia materialista, ontologia e teoria crítica.
 - `🚩│política` — Economia política, teoria do estado e análise de conjuntura.
+- `🎓│pedagogia` — Pedagogia crítica, educação popular e métodos de ensino alfabetizador.
 - `🌿│ecologia` — Ecossocialismo, agroecologia e colapso climático.
 - `⏳│história` — História das revoluções e movimentos populares.
 - `🧠│humanidades` — Sociologia, antropologia e estudos sociais.
