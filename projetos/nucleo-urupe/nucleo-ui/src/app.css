@@ -1,5 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;500;600;700&display=swap');
 
 @theme inline {
   --font-serif: "Cormorant Garamond", serif;
@@ -13,35 +13,76 @@
 }
 
 @layer tokens.base {
+  /* ==========================================================================
+     GRUVBOX SOLARPUNK DESIGN SYSTEM (FRENTE URUPÊ)
+     Tons terrosos, verde clorofila, ocre solar e terracota em base orgânica
+     ========================================================================== */
   :root {
-    --background: oklch(0.04 0 0);
-    --foreground: oklch(0.95 0 0);
-    --card: oklch(0.08 0 0);
-    --card-foreground: oklch(0.95 0 0);
-    --muted: oklch(0.1 0 0);
-    --muted-foreground: oklch(0.55 0 0);
-    --secondary: oklch(0.12 0 0);
-    --secondary-foreground: oklch(0.95 0 0);
-    --primary: oklch(0.6 0.18 260);
-    --primary-foreground: oklch(0.95 0 0);
-    --accent: oklch(0.08 0 0);
-    --accent-foreground: oklch(0.95 0 0);
-    --destructive: oklch(0.65 0.24 30);
+    /* Base Dark Mode (Gruvbox Dark / Carvão Aquecido) */
+    --background: oklch(0.18 0.02 65); /* #1d2021 Carvão Terroso */
+    --foreground: oklch(0.92 0.03 85); /* #ebdbb2 Creme Claro */
+    --card: oklch(0.22 0.025 65); /* #282828 Card Argila Escura */
+    --card-foreground: oklch(0.92 0.03 85);
+    --muted: oklch(0.26 0.03 65); /* #3c3836 Superfície Elevada */
+    --muted-foreground: oklch(0.68 0.04 80); /* #a89984 Texto Suave */
+    --secondary: oklch(0.3 0.03 65);
+    --secondary-foreground: oklch(0.92 0.03 85);
+
+    /* Acentos Solarpunk Organics */
+    --primary: oklch(0.72 0.18 140); /* #b8bb26 Verde Clorofila / Folha Urupê */
+    --primary-foreground: oklch(0.15 0.02 65);
+    --accent: oklch(0.78 0.16 85); /* #fabd2f Ocre Solar */
+    --accent-foreground: oklch(0.15 0.02 65);
+    --terracotta: oklch(0.68 0.19 45); /* #fe8019 Terracota / Argila */
+    --teal-mesh: oklch(0.74 0.14 190); /* #8ec07c Verde Água Mineral */
+
+    --destructive: oklch(0.65 0.22 25); /* #fb4934 Vermelho Terra */
     --destructive-foreground: oklch(0.95 0 0);
-    --border: oklch(1 0 0 / 0.04);
-    --input: oklch(1 0 0 / 0.06);
-    --ring: oklch(0.6 0.18 260);
+
+    --border: oklch(0.35 0.04 70 / 0.4);
+    --input: oklch(0.26 0.03 65);
+    --ring: oklch(0.72 0.18 140);
     --radius: 1.25rem;
-    --glass-surface: oklch(0.08 0 0 / 0.7);
-    --glass-border: oklch(1 0 0 / 0.05);
-    --success: oklch(0.65 0.2 145);
-    --warning: oklch(0.8 0.18 85);
-    --shadow-main: 0 30px 60px oklch(0 0 0 / 0.6);
+
+    --glass-surface: oklch(0.22 0.025 65 / 0.75);
+    --glass-border: oklch(0.45 0.05 70 / 0.3);
+    --success: oklch(0.72 0.18 140);
+    --warning: oklch(0.78 0.16 85);
+    --shadow-main: 0 20px 40px oklch(0.1 0.02 65 / 0.5);
+
     --font-sans: "Source Sans 3", sans-serif;
+    --font-serif: "Cormorant Garamond", serif;
+    --font-mono: "IBM Plex Mono", monospace;
+
     --duration-snappy: 150ms;
     --duration-fluid: 250ms;
     --duration-slow: 400ms;
     --easing-default: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Light Mode (Gruvbox Material Pergaminho Solar) */
+  .light {
+    --background: oklch(0.95 0.03 85); /* #fbf1c7 Pergaminho Creme */
+    --foreground: oklch(0.22 0.03 65); /* #282828 Carvão */
+    --card: oklch(0.91 0.04 85); /* #f2e5bc Card Algodão */
+    --card-foreground: oklch(0.22 0.03 65);
+    --muted: oklch(0.86 0.04 85); /* #ebdbb2 Tone Elevado */
+    --muted-foreground: oklch(0.45 0.04 70); /* #7c6f64 */
+    --secondary: oklch(0.88 0.04 85);
+    --secondary-foreground: oklch(0.22 0.03 65);
+
+    --primary: oklch(0.52 0.18 140); /* Verde Clorofila Intenso */
+    --primary-foreground: oklch(0.96 0.03 85);
+    --accent: oklch(0.65 0.16 85); /* Ocre Quente */
+    --accent-foreground: oklch(0.96 0.03 85);
+
+    --border: oklch(0.78 0.04 80 / 0.5);
+    --input: oklch(0.86 0.04 85);
+    --ring: oklch(0.52 0.18 140);
+
+    --glass-surface: oklch(0.91 0.04 85 / 0.8);
+    --glass-border: oklch(0.75 0.04 80 / 0.4);
+    --shadow-main: 0 15px 30px oklch(0.3 0.04 70 / 0.15);
   }
 }
 
@@ -55,14 +96,17 @@ h1, h2, h3 { font-family: "Cormorant Garamond", serif; margin: 0; }
   overflow: hidden;
   transition: all 250ms var(--easing-default);
 }
+
 .live-tag {
   display: inline-flex; align-items: center; border-radius: 9999px; padding: 0.375rem 0.75rem;
   font-size: 0.75rem; font-weight: 600; border: 1px solid var(--border);
   background: var(--primary); color: var(--primary-foreground);
 }
+
 .eyebrow { margin: 0 0 0.5rem; text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.65rem; font-weight: 700; color: var(--muted-foreground); }
 .section { margin-bottom: 2rem; }
 .view-wrapper > * { animation: mazeFadeIn 0.4s ease-out; }
+
 @keyframes mazeFadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
