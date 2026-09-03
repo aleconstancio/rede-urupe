@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manifesto da Rede Urupê — V4 (Estilo Gruvbox Minimalista)</title>
+  
+  <!-- Google Fonts: JetBrains Mono & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* PALETA GRUVBOX OFFICIAL */
+    :root {
+      --gb-bg: #282828;
+      --gb-bg-hard: #1d2021;
+      --gb-bg-soft: #32302f;
+      --gb-bg-card: #3c3836;
+      
+      --gb-fg: #ebdbb2;
+      --gb-fg-dim: #a89984;
+      
+      --gb-red: #fb4934;
+      --gb-green: #b8bb26;
+      --gb-yellow: #fabd2f;
+      --gb-blue: #83a598;
+      --gb-purple: #d3869b;
+      --gb-aqua: #8ec07c;
+      --gb-orange: #fe8019;
+      
+      --font-code: 'JetBrains Mono', monospace;
+      --font-text: 'Lora', serif;
+    }
+
+    [data-theme="light"] {
+      --gb-bg: #fbf1c7;
+      --gb-bg-hard: #f2e5bc;
+      --gb-bg-soft: #ebdbb2;
+      --gb-bg-card: #f9f5d7;
+      
+      --gb-fg: #3c3836;
+      --gb-fg-dim: #7c6f64;
+      
+      --gb-red: #9d0006;
+      --gb-green: #79740e;
+      --gb-yellow: #b57614;
+      --gb-blue: #076678;
+      --gb-purple: #8f3f71;
+      --gb-aqua: #427b58;
+      --gb-orange: #af3a03;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--gb-bg);
+      color: var(--gb-fg);
+      font-family: var(--font-text);
+      line-height: 1.8;
+      padding: 60px 20px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      max-width: 760px;
+      width: 100%;
+    }
+
+    /* THEME SWITCHER TOP RIGHT */
+    .top-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      font-family: var(--font-code);
+      font-size: 0.8rem;
+      color: var(--gb-fg-dim);
+      border-bottom: 1px solid var(--gb-bg-card);
+      padding-bottom: 16px;
+    }
+
+    .theme-toggle {
+      background: var(--gb-bg-card);
+      border: 1px solid var(--gb-fg-dim);
+      color: var(--gb-fg);
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      background: var(--gb-yellow);
+      color: var(--gb-bg-hard);
+      border-color: var(--gb-yellow);
+    }
+
+    /* HEADER HERO */
+    header {
+      margin-bottom: 50px;
+    }
+
+    .header-meta {
+      font-family: var(--font-code);
+      font-size: 0.85rem;
+      color: var(--gb-yellow);
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-family: var(--font-code);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gb-green);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-family: var(--font-code);
+      font-size: 1rem;
+      color: var(--gb-aqua);
+      margin-bottom: 4px;
+    }
+
+    .location {
+      font-family: var(--font-code);
+      font-size: 0.8rem;
+      color: var(--gb-fg-dim);
+    }
+
+    /* ESSENTIAL MANIFESTO CONTENT */
+    article {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .section-block {
+      border-left: 3px solid var(--gb-bg-card);
+      padding-left: 20px;
+      transition: border-color 0.2s ease;
+    }
+
+    .section-block:hover {
+      border-left-color: var(--gb-yellow);
+    }
+
+    h2 {
+      font-family: var(--font-code);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--gb-orange);
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: var(--gb-fg);
+      margin-bottom: 16px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    .para-alienation {
+      color: var(--gb-fg-dim);
+      border-left: 2px solid var(--gb-red);
+      padding-left: 14px;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+
+    .para-affirmation {
+      color: var(--gb-fg);
+      border-left: 2px solid var(--gb-green);
+      padding-left: 14px;
+    }
+
+    /* PREAMBLE SPECIAL BOX */
+    .preamble-box {
+      background: var(--gb-bg-soft);
+      border: 1px solid var(--gb-bg-card);
+      border-radius: 8px;
+      padding: 24px;
+      font-size: 1.1rem;
+    }
+
+    .preamble-box p:last-child {
+      color: var(--gb-yellow);
+      font-weight: 500;
+    }
+
+    /* CONVOCATÓRIA FINAL */
+    .convocatoria-box {
+      background: var(--gb-bg-card);
+      border: 1px solid var(--gb-green);
+      border-radius: 8px;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .convocatoria-box h2 {
+      color: var(--gb-green);
+      margin-bottom: 16px;
+    }
+
+    .convocatoria-box p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .slogan {
+      font-family: var(--font-code);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--gb-yellow);
+      background: var(--gb-bg-hard);
+      padding: 12px 20px;
+      border-radius: 6px;
+      display: inline-block;
+      border: 1px solid var(--gb-yellow);
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid var(--gb-bg-card);
+      text-family: var(--font-code);
+      font-family: var(--font-code);
+      font-size: 0.8rem;
+      color: var(--gb-fg-dim);
+      text-align: center;
+    }
+
+    /* IMPRESSÃO */
+    @media print {
+      body {
+        background: #FFFFFF !important;
+        color: #000000 !important;
+        padding: 0;
+      }
+      .top-controls {
+        display: none !important;
+      }
+      h1, h2, .slogan {
+        color: #000000 !important;
+      }
+      .para-alienation {
+        border-left-color: #999 !important;
+      }
+      .para-affirmation {
+        border-left-color: #000 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- CONTROLES TOPO GRUVBOX -->
+    <div class="top-controls">
+      <span>REDE URUPÊ // MANIFESTO V4</span>
+      <button class="theme-toggle" onclick="toggleGruvboxTheme()">[ Alternar Gruvbox Dark / Light ]</button>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+      <div class="header-meta"># MANIFESTO FUNDACIONAL</div>
+      <h1>Manifesto do Núcleo Urupê</h1>
+      <p class="subtitle">Carta de Despertar Ontológico e Catarse da Vida</p>
+      <p class="location">Brasil, 2026</p>
+    </header>
+
+    <!-- ARTIGO DO MANIFESTO -->
+    <article>
+
+      <!-- PREÂMBULO -->
+      <div class="preamble-box">
+        <p>
+          Tudo o que é essencial à existência humana foi sequestrado. Sob a ditadura da lei do valor, o planeta virou produto, o cuidado virou fardo, a técnica virou alienação, a autoridade virou opressão e o próprio tempo da nossa vida virou dinheiro.
+        </p>
+        <p>
+          O Núcleo Urupê é uma comuna cibernética ecossocialista. Erguemos a vanguarda ideológica da transição: decompomos o fetiche do Capital e germinamos a práxis da emancipação sobre 5 Dimensões Ontológicas:
+        </p>
+      </div>
+
+      <!-- I. A MATÉRIA E A ECONOMIA -->
+      <div class="section-block">
+        <h2>I. A MATÉRIA E A ECONOMIA</h2>
+        <p class="para-alienation">
+          Você foi ensinado a ver o solo como uma mercadoria distante e a tratar a moradia como uma dívida permanente que consome décadas do seu trabalho. A própria comida que nutre a sua família foi convertida em mercadoria especulativa, encarecida pelo agronegócio e envenenada por insumos sintéticos.
+        </p>
+        <p class="para-affirmation">
+          Contudo, o solo e o espaço são o metabolismo físico inalienável da sua existência. Afirmamos o direito incondicional de habitar sem cativeiro imobiliário, a soberania alimentar agroecológica e a destinação de toda a matéria ao valor de uso da vida. O espaço e os bens da natureza pertencem à reprodução da comunidade.
+        </p>
+      </div>
+
+      <!-- II. A SUBJETIVIDADE E A CULTURA -->
+      <div class="section-block">
+        <h2>II. A SUBJETIVIDADE E A CULTURA</h2>
+        <p class="para-alienation">
+          A sua dor psíquica foi privatizada: disseram que a sua exaustão é um defeito individual, anestesiando a sua dor com fórmulas químicas para mantê-lo produzindo. O seu afeto foi isolado, a sua expressão cultural foi reduzida a entretenimento comercial e o trabalho de cuidado com a vida foi tornado invisível.
+        </p>
+        <p class="para-affirmation">
+          No entanto, a sua subjetividade e a sua sensibilidade são o verdadeiro núcleo da existência. Afirmamos a desprivatização da dor, a coletivização do cuidado reprodutivo, o amparo comunitário e o resgate da cultura viva. A sua mente não é mercadoria; o seu afeto pertence à dignidade do seu ser.
+        </p>
+      </div>
+
+      <!-- III. O INTELECTO E A TÉCNICA -->
+      <div class="section-block">
+        <h2>III. O INTELECTO E A TÉCNICA</h2>
+        <p class="para-alienation">
+          A sua atenção foi sequestrada por telas e algoritmos de vigilância. Plataformas corporativas mineram o seu tempo, rentabilizam a sua ansiedade e utilizam o saber acumulado pela humanidade para criar máquinas que precarizam e vigiam o seu próprio trabalho.
+        </p>
+        <p class="para-affirmation">
+          Entretanto, a ciência, a linguagem e a técnica são expressões do intelecto comum da humanidade. Afirmamos a desintoxicação algorítmica, a Cosmotécnica soberana e o código livre: redes descentralizadas e ferramentas digitais criadas para expandir a sua autonomia, e não para aprisionar o seu foco.
+        </p>
+      </div>
+
+      <!-- IV. O PODER E A PRÁXIS -->
+      <div class="section-block">
+        <h2>IV. O PODER E A PRÁXIS</h2>
+        <p class="para-alienation">
+          Ensinaram você a ser passivo: a terceirizar a sua força para rituais eleitorais e esperar que o Estado resolva a violência da sua rotina. Enquanto isso, o aparato policial e a justiça de classe disciplinam a periferia para garantir a ordem da propriedade.
+        </p>
+        <p class="para-affirmation">
+          Contudo, a auto-organização de base e a ação direta são o seu poder inalienável. Afirmamos a superação das ilusões institucionais, a autodefesa comunal e o Poder Popular. A libertação real não virá de decretos no topo, mas da associação autônoma dos trabalhadores organizados em seu próprio território.
+        </p>
+      </div>
+
+      <!-- V. O TEMPO E O COMUM -->
+      <div class="section-block">
+        <h2>V. O TEMPO E O COMUM</h2>
+        <p class="para-alienation">
+          Reduziram a sua existência ao valor das horas que você vende no mercado. Ensinaram você a sentir culpa quando descansa e a consumir mercadorias descartáveis para estancar o vazio de uma rotina exaustiva.
+        </p>
+        <p class="para-affirmation">
+          Pois a riqueza autêntica do seu ser é a soberania sobre o próprio tempo, a convivência fraternal e o desfrute da vida. Afirmamos a libertação do tempo em relação ao relógio mercantil, a cooperação desmercantilizada, o riso antropofágico e a edificação de uma Sociedade dos Comuns.
+        </p>
+      </div>
+
+      <!-- CONVOCATÓRIA DE DESPERTAR -->
+      <div class="convocatoria-box">
+        <h2>Convocatória de Despertar</h2>
+        <p>
+          Não venda a sua vida ao mercado nem entregue o seu destino aos políticos. Decodifique a raiz do seu sofrimento. Aproprie-se dos saberes e das tecnologias livres. Unifique-se à sua comunidade e erga a autonomia do seu território.
+        </p>
+        <div class="slogan">
+          Devoramos a madeira morta do capital para germinar a vida plena no Comum.
+        </div>
+      </div>
+
+    </article>
+
+    <!-- FOOTER -->
+    <footer>
+      Núcleo Urupê — Comuna Cibernética Ecossocialista | Brasil, 2026
+    </footer>
+
+  </div>
+
+  <!-- SCRIPT PARA TROCA DE TEMA GRUVBOX -->
+  <script>
+    function toggleGruvboxTheme() {
+      const body = document.documentElement;
+      if (body.getAttribute('data-theme') === 'light') {
+        body.removeAttribute('data-theme');
+      } else {
+        body.setAttribute('data-theme', 'light');
+      }
+    }
+  </script>
+
+</body>
+</html>

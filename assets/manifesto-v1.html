@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manifesto do Núcleo Urupê — Versão Visual (V1)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0A0D14;
+      --card-bg: rgba(18, 24, 38, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent-emerald: #10B981;
+      --accent-emerald-glow: rgba(16, 185, 129, 0.25);
+      --accent-gold: #F59E0B;
+      --accent-cyan: #06B6D4;
+      --text-main: #F3F4F6;
+      --text-muted: #9CA3AF;
+      --text-dim: #6B7280;
+      --alienation-border: rgba(239, 68, 68, 0.4);
+      --affirmation-border: rgba(16, 185, 129, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 10% 40%, rgba(245, 158, 11, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 50%);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+    }
+
+    /* HEADER HERO */
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--accent-emerald);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent-emerald);
+      box-shadow: 0 0 10px var(--accent-emerald);
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #FFFFFF 0%, #E5E7EB 50%, var(--accent-emerald) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--accent-gold);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .location {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+
+    /* PREAMBLE CARD */
+    .preamble-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-left: 4px solid var(--accent-emerald);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .preamble-card h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      color: #FFFFFF;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .preamble-card p {
+      font-size: 1.05rem;
+      color: #D1D5DB;
+      margin-bottom: 16px;
+    }
+
+    .preamble-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight-text {
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    /* SECTION TITLE */
+    .section-divider {
+      text-align: center;
+      margin: 40px 0 24px;
+      position: relative;
+    }
+
+    .section-divider span {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      background: var(--bg-dark);
+      padding: 0 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-divider::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--card-border), transparent);
+    }
+
+    /* 5 DIMENSIONS GRID */
+    .dimensions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .dimension-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 28px;
+      backdrop-filter: blur(12px);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .dimension-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .dimension-number {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-emerald);
+    }
+
+    .dimension-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+    }
+
+    .paragraphs-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .para-box {
+      padding: 16px 20px;
+      border-radius: 10px;
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+
+    .para-alienation {
+      background: rgba(239, 68, 68, 0.06);
+      border-left: 3px solid var(--alienation-border);
+      color: #E5E7EB;
+    }
+
+    .para-alienation strong {
+      color: #FCA5A5;
+    }
+
+    .para-affirmation {
+      background: rgba(16, 185, 129, 0.06);
+      border-left: 3px solid var(--affirmation-border);
+      color: #F3F4F6;
+    }
+
+    .para-affirmation strong {
+      color: #6EE7B7;
+    }
+
+    /* CONVOCATÓRIA */
+    .convocatoria-card {
+      margin-top: 40px;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(18, 24, 38, 0.85) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      box-shadow: 0 0 30px var(--accent-emerald-glow);
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .convocatoria-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--accent-emerald);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .convocatoria-text {
+      font-size: 1.05rem;
+      color: #E5E7EB;
+      margin-bottom: 20px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .convocatoria-slogan {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      padding: 14px 24px;
+      background: rgba(16, 185, 129, 0.2);
+      border-radius: 9999px;
+      display: inline-block;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    /* PRINT RULES */
+    @media print {
+      body {
+        background: #FFFFFF !important;
+        color: #111827 !important;
+        padding: 0;
+      }
+      .badge {
+        border-color: #000;
+        color: #000;
+      }
+      h1 {
+        background: none;
+        -webkit-text-fill-color: initial;
+        color: #000;
+      }
+      .preamble-card, .dimension-card, .convocatoria-card {
+        background: #F9FAFB !important;
+        border: 1px solid #E5E7EB !important;
+        box-shadow: none !important;
+        color: #111827 !important;
+      }
+      .para-alienation {
+        background: #FEF2F2 !important;
+        border-left-color: #EF4444 !important;
+        color: #1F2937 !important;
+      }
+      .para-affirmation {
+        background: #ECFDF5 !important;
+        border-left-color: #10B981 !important;
+        color: #1F2937 !important;
+      }
+      .convocatoria-slogan {
+        background: #10B981 !important;
+        color: #FFFFFF !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- HEADER HERO -->
+    <header>
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Think Tank Ecossocialista
+      </div>
+      <h1>Manifesto do Núcleo Urupê</h1>
+      <p class="subtitle">Carta de Despertar Ontológico e Catarse da Vida</p>
+      <p class="location">Brasil, 2026</p>
+    </header>
+
+    <!-- PREAMBLE CARD -->
+    <div class="preamble-card">
+      <h2>📜 Preâmbulo</h2>
+      <p>Tudo o que é essencial à existência humana foi sequestrado. Sob a ditadura da lei do valor, o planeta virou produto, o cuidado virou fardo, a técnica virou alienação, a autoridade virou opressão e o próprio tempo da nossa vida virou dinheiro.</p>
+      <p class="highlight-text">O <strong>Núcleo Urupê</strong> é um think tank ecossocialista. Erguemos a vanguarda ideológica da transição: decompomos o fetiche do Capital e germinamos a práxis da emancipação sobre 5 Dimensões Ontológicas:</p>
+    </div>
+
+    <div class="section-divider">
+      <span>As 5 Dimensões Ontológicas</span>
+    </div>
+
+    <!-- 5 DIMENSIONS LIST -->
+    <div class="dimensions-list">
+
+      <!-- I. A MATÉRIA E A ECONOMIA -->
+      <div class="dimension-card">
+        <div class="dimension-header">
+          <div class="dimension-number">I</div>
+          <div class="dimension-title">A MATÉRIA E A ECONOMIA</div>
+        </div>
+        <div class="paragraphs-container">
+          <div class="para-box para-alienation">
+            Você foi ensinado a ver o solo como uma mercadoria distante e a tratar a moradia como uma dívida permanente que consome décadas do seu trabalho. A própria comida que nutre a sua família foi convertida em mercadoria especulativa, encarecida pelo agronegócio e envenenada por insumos sintéticos.
+          </div>
+          <div class="para-box para-affirmation">
+            Contudo, o solo e o espaço são o metabolismo físico inalienável da sua existência. Afirmamos o direito incondicional de habitar sem cativeiro imobiliário, a soberania alimentar agroecológica e a destinação de toda a matéria ao valor de uso da vida. O espaço e os bens da natureza pertencem à reprodução da comunidade.
+          </div>
+        </div>
+      </div>
+
+      <!-- II. A SUBJETIVIDADE E A CULTURA -->
+      <div class="dimension-card">
+        <div class="dimension-header">
+          <div class="dimension-number">II</div>
+          <div class="dimension-title">A SUBJETIVIDADE E A CULTURA</div>
+        </div>
+        <div class="paragraphs-container">
+          <div class="para-box para-alienation">
+            A sua dor psíquica foi privatizada: disseram que a sua exaustão é um defeito individual, anestesiando a sua dor com fórmulas químicas para mantê-lo produzindo. O seu afeto foi isolado, a sua expressão cultural foi reduzida a entretenimento comercial e o trabalho de cuidado com a vida foi tornado invisível.
+          </div>
+          <div class="para-box para-affirmation">
+            No entanto, a sua subjetividade e a sua sensibilidade são o verdadeiro núcleo da existência. Afirmamos a desprivatização da dor, a coletivização do cuidado reprodutivo, o amparo comunitário e o resgate da cultura viva. A sua mente não é mercadoria; o seu afeto pertence à dignidade do seu ser.
+          </div>
+        </div>
+      </div>
+
+      <!-- III. O INTELECTO E A TÉCNICA -->
+      <div class="dimension-card">
+        <div class="dimension-header">
+          <div class="dimension-number">III</div>
+          <div class="dimension-title">O INTELECTO E A TÉCNICA</div>
+        </div>
+        <div class="paragraphs-container">
+          <div class="para-box para-alienation">
+            A sua atenção foi sequestrada por telas e algoritmos de vigilância. Plataformas corporativas mineram o seu tempo, rentabilizam a sua ansiedade e utilizam o saber acumulado pela humanidade para criar máquinas que precarizam e vigiam o seu próprio trabalho.
+          </div>
+          <div class="para-box para-affirmation">
+            Entretanto, a ciência, a linguagem e a técnica são expressões do intelecto comum da humanidade. Afirmamos a desintoxicação algorítmica, a Cosmotécnica soberana e o código livre: redes descentralizadas e ferramentas digitais criadas para expandir a sua autonomia, e não para aprisionar o seu foco.
+          </div>
+        </div>
+      </div>
+
+      <!-- IV. O PODER E A PRÁXIS -->
+      <div class="dimension-card">
+        <div class="dimension-header">
+          <div class="dimension-number">IV</div>
+          <div class="dimension-title">O PODER E A PRÁXIS</div>
+        </div>
+        <div class="paragraphs-container">
+          <div class="para-box para-alienation">
+            Ensinaram você a ser passivo: a terceirizar a sua força para rituais eleitorais e esperar que o Estado resolva a violência da sua rotina. Enquanto isso, o aparato policial e a justiça de classe disciplinam a periferia para garantir a ordem da propriedade.
+          </div>
+          <div class="para-box para-affirmation">
+            Contudo, a auto-organização de base e a ação direta são o seu poder inalienável. Afirmamos a superação das ilusões institucionais, a autodefesa comunal e o Poder Popular. A libertação real não virá de decretos no topo, mas da associação autônoma dos trabalhadores organizados em seu próprio território.
+          </div>
+        </div>
+      </div>
+
+      <!-- V. O TEMPO E O COMUM -->
+      <div class="dimension-card">
+        <div class="dimension-header">
+          <div class="dimension-number">V</div>
+          <div class="dimension-title">O TEMPO E O COMUM</div>
+        </div>
+        <div class="paragraphs-container">
+          <div class="para-box para-alienation">
+            Reduziram a sua existência ao valor das horas que você vende no mercado. Ensinaram você a sentir culpa quando descansa e a consumir mercadorias descartáveis para estancar o vazio de uma rotina exaustiva.
+          </div>
+          <div class="para-box para-affirmation">
+            Pois a riqueza autêntica do seu ser é a soberania sobre o próprio tempo, a convivência fraternal e o desfrute da vida. Afirmamos a libertação do tempo em relação ao relógio mercantil, a cooperação desmercantilizada, o riso antropofágico e a edificação de uma Sociedade dos Comuns.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CONVOCATÓRIA -->
+    <div class="convocatoria-card">
+      <div class="convocatoria-title">Convocatória de Despertar</div>
+      <p class="convocatoria-text">Não venda a sua vida ao mercado nem entregue o seu destino aos políticos. Decodifique a raiz do seu sofrimento. Aproprie-se dos saberes e das tecnologias livres. Unifique-se à sua comunidade e erga a autonomia do seu território.</p>
+      <div class="convocatoria-slogan">Devoramos a madeira morta do capital para germinar a vida plena no Comum.</div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      Núcleo Urupê — Think Tank Ecossocialista &amp; Infraestrutura Aberta | 2026
+    </footer>
+
+  </div>
+
+</body>
+</html>

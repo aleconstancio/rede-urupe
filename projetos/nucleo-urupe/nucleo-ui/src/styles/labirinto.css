@@ -1,0 +1,98 @@
+/* Labirinto de Dédalo — Custom Theme */
+/* Deep indigo + violet labyrinth aesthetic */
+
+[data-theme="labirinto"] {
+	--background: oklch(0.06 0.02 280);
+	--foreground: oklch(0.95 0.01 280);
+	--card: oklch(1 0 0 / 0.06);
+	--card-foreground: oklch(0.95 0.01 280);
+	--card-solid: oklch(0.09 0.02 280);
+	--surface-1: oklch(0.08 0.02 280);
+	--surface-2: oklch(0.11 0.02 280);
+	--surface-3: oklch(0.14 0.02 280);
+	--muted: oklch(1 0 0 / 0.04);
+	--muted-foreground: oklch(0.55 0.03 280);
+	--secondary: oklch(1 0 0 / 0.08);
+	--secondary-foreground: oklch(0.95 0.01 280);
+	--primary: oklch(0.72 0.2 275);
+	--primary-foreground: oklch(0.15 0 0);
+	--accent: oklch(0.65 0.25 310);
+	--accent-foreground: oklch(0.15 0 0);
+	--destructive: oklch(0.65 0.24 30);
+	--destructive-foreground: oklch(0.14 0 0);
+	--destructive-soft: oklch(0.65 0.24 30 / 0.12);
+	--success: oklch(0.65 0.2 145);
+	--success-foreground: oklch(0.15 0 0);
+	--success-soft: oklch(0.65 0.2 145 / 0.12);
+	--warning: oklch(0.8 0.18 85);
+	--warning-foreground: oklch(0.15 0.02 85);
+	--warning-soft: oklch(0.8 0.18 85 / 0.12);
+	--info: oklch(0.7 0.14 260);
+	--info-foreground: oklch(0.15 0 0);
+	--info-soft: oklch(0.7 0.14 260 / 0.12);
+	--border: oklch(1 0 0 / 0.08);
+	--border-strong: oklch(1 0 0 / 0.18);
+	--border-subtle: oklch(1 0 0 / 0.05);
+	--input: oklch(1 0 0 / 0.06);
+	--ring: oklch(0.72 0.2 275);
+	--overlay: oklch(0 0 0 / 0.55);
+	--overlay-strong: oklch(0 0 0 / 0.75);
+	--glass-surface: oklch(0 0 0 / 0.4);
+	--glass-border: oklch(1 0 0 / 0.08);
+	--sidebar-background: oklch(0.05 0.015 280);
+	--sidebar-foreground: oklch(0.95 0.01 280);
+	--sidebar-primary: oklch(0.72 0.2 275);
+	--sidebar-primary-foreground: oklch(0.15 0 0);
+	--sidebar-accent: oklch(1 0 0 / 0.06);
+	--sidebar-accent-foreground: oklch(0.95 0.01 280);
+	--sidebar-border: oklch(1 0 0 / 0.08);
+	--sidebar-ring: oklch(0.72 0.2 275);
+}
+
+:root:not(.dark)[data-theme="labirinto"] {
+	--background: oklch(0.98 0.005 280);
+	--foreground: oklch(0.15 0.01 280);
+	--card: oklch(1 0 0 / 0.8);
+	--card-foreground: oklch(0.15 0.01 280);
+	--card-solid: oklch(1 0 0);
+	--surface-1: oklch(0 0 0 / 0.02);
+	--surface-2: oklch(0 0 0 / 0.04);
+	--surface-3: oklch(0 0 0 / 0.06);
+	--muted: oklch(0 0 0 / 0.04);
+	--muted-foreground: oklch(0.28 0.01 280);
+	--secondary: oklch(0 0 0 / 0.06);
+	--secondary-foreground: oklch(0.15 0.01 280);
+	--primary: oklch(0.35 0.18 275);
+	--primary-foreground: oklch(0.99 0 0);
+	--accent: oklch(0.5 0.25 310);
+	--accent-foreground: oklch(0.99 0 0);
+	--destructive: oklch(0.5 0.22 25);
+	--destructive-foreground: oklch(0.99 0 0);
+	--destructive-soft: oklch(0.5 0.22 25 / 0.1);
+	--success: oklch(0.3 0.16 145);
+	--success-foreground: oklch(0.99 0 0);
+	--success-soft: oklch(0.55 0.16 145 / 0.1);
+	--warning: oklch(0.3 0.16 80);
+	--warning-foreground: oklch(0.99 0 0);
+	--warning-soft: oklch(0.6 0.16 80 / 0.1);
+	--info: oklch(0.35 0.14 260);
+	--info-foreground: oklch(0.99 0 0);
+	--info-soft: oklch(0.5 0.14 260 / 0.1);
+	--border: oklch(0 0 0 / 0.08);
+	--border-strong: oklch(0 0 0 / 0.18);
+	--border-subtle: oklch(0 0 0 / 0.04);
+	--input: oklch(0 0 0 / 0.04);
+	--ring: oklch(0.45 0.18 275);
+	--overlay: oklch(0 0 0 / 0.4);
+	--overlay-strong: oklch(0 0 0 / 0.6);
+	--glass-surface: oklch(1 0 0 / 0.7);
+	--glass-border: oklch(0 0 0 / 0.08);
+	--sidebar-background: oklch(0.96 0.005 280);
+	--sidebar-foreground: oklch(0.15 0.01 280);
+	--sidebar-primary: oklch(0.4 0.18 275);
+	--sidebar-primary-foreground: oklch(0.99 0 0);
+	--sidebar-accent: oklch(0 0 0 / 0.03);
+	--sidebar-accent-foreground: oklch(0.15 0.01 280);
+	--sidebar-border: oklch(0 0 0 / 0.08);
+	--sidebar-ring: oklch(0.45 0.18 275);
+}

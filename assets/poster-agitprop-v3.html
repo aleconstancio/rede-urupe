@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Núcleo Urupê — Pôster Agitprop V3 (2 Colunas para Print)</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&family=Syne:wght@800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* PALETA GRUVBOX OFFICIAL */
+    :root {
+      --gb-bg: #282828;
+      --gb-bg-hard: #1d2021;
+      --gb-bg-soft: #32302f;
+      --gb-bg-card: #3c3836;
+      
+      --gb-fg: #ebdbb2;
+      --gb-fg-dim: #a89984;
+      
+      --gb-red: #fb4934;
+      --gb-green: #b8bb26;
+      --gb-yellow: #fabd2f;
+      --gb-blue: #83a598;
+      --gb-purple: #d3869b;
+      --gb-aqua: #8ec07c;
+      --gb-orange: #fe8019;
+      
+      --font-display: 'Syne', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-serif: 'Lora', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--gb-bg-hard);
+      color: var(--gb-fg);
+      font-family: var(--font-serif);
+      line-height: 1.5;
+      padding: 24px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* PÔSTER CONTAINER 2 COLUNAS */
+    .poster-frame {
+      max-width: 1080px;
+      width: 100%;
+      background: var(--gb-bg);
+      border: 4px solid var(--gb-yellow);
+      box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.8),
+        0 0 0 8px var(--gb-bg-hard),
+        0 0 0 12px var(--gb-green);
+      padding: 30px;
+      position: relative;
+    }
+
+    /* GRID DE 2 COLUNAS */
+    .poster-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    @media (max-width: 860px) {
+      .poster-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* COLUNA ESQUERDA: MARCA, TÍTULO E ILUSTRAÇÃO */
+    .col-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .brand-header {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gb-bg-hard);
+      background: var(--gb-yellow);
+      padding: 5px 14px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--gb-red);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+
+    .art-frame {
+      border: 3px solid var(--gb-green);
+      background: var(--gb-bg-hard);
+      padding: 8px;
+      width: 100%;
+      max-width: 440px;
+    }
+
+    .art-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* COLUNA DIREITA: PREÂMBULO, SLOGAN, DISCORD & FOOTER */
+    .col-right {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .preamble-box {
+      background: var(--gb-bg-soft);
+      border-left: 4px solid var(--gb-yellow);
+      padding: 18px 20px;
+      font-size: 1.05rem;
+      color: var(--gb-fg);
+      line-height: 1.7;
+    }
+
+    .slogan-box {
+      background: var(--gb-bg-card);
+      border: 1px dashed var(--gb-yellow);
+      color: var(--gb-yellow);
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 12px 16px;
+      text-align: center;
+    }
+
+    .callout-box {
+      background: var(--gb-bg-card);
+      border: 2px solid var(--gb-green);
+      padding: 18px 20px;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    .callout-tag {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--gb-orange);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .callout-main-text {
+      font-family: var(--font-mono);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gb-green);
+      line-height: 1.45;
+    }
+
+    /* FOOTER INTEGRADO */
+    footer {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--gb-fg-dim);
+      letter-spacing: 0.05em;
+      text-align: center;
+      border-top: 1px dashed var(--gb-bg-card);
+      padding-top: 10px;
+    }
+
+    /* IMPRESSÃO */
+    @media print {
+      body {
+        background: #FFF !important;
+        color: #000 !important;
+        padding: 0;
+      }
+      .poster-frame {
+        border-color: #000 !important;
+        box-shadow: none !important;
+        background: #FFF !important;
+      }
+      h1, .callout-main-text, .slogan-box {
+        color: #000 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="poster-frame">
+    <div class="poster-grid">
+
+      <!-- COLUNA ESQUERDA (IMAGEM & CABEÇALHO) -->
+      <div class="col-left">
+        <div class="brand-header">
+          NÚCLEO URUPÊ
+        </div>
+        <h1>DECOMPOSIÇÃO DA ALIENAÇÃO</h1>
+        
+        <div class="art-frame">
+          <img src="agitprop-urupe-v3-monitor-ligado.png" alt="Arte Agitprop Núcleo Urupê — Urupê Ligado na Net">
+        </div>
+      </div>
+
+      <!-- COLUNA DIREITA (CONTEÚDO & CONVOCAÇÃO) -->
+      <div class="col-right">
+        <!-- PREÂMBULO -->
+        <div class="preamble-box">
+          Tudo o que é essencial à existência humana foi sequestrado. Sob a ditadura da <strong>lei do valor</strong>, o planeta virou produto, o cuidado virou fardo, a técnica virou alienação, a autoridade virou opressão e o próprio tempo da nossa vida virou dinheiro.
+        </div>
+
+        <!-- SLOGAN -->
+        <div class="slogan-box">
+          "Devoramos a madeira morta do capital para germinar a vida plena no Comum."
+        </div>
+
+        <!-- CONVOCAÇÃO DISCORD COMUNA CIBERNÉTICA -->
+        <div class="callout-box">
+          <div class="callout-tag">📢 CONVOCAÇÃO DECENTRALIZADA</div>
+          <div class="callout-main-text">
+            Em breve, abertura do discord para a construção de uma comuna cibernética voltada para o futuro.
+          </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+          REDE URUPÊ // COMUNA CIBERNÉTICA ECOSSOCIALISTA (2026)
+        </footer>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

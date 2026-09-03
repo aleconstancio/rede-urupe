@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manifesto da Rede Urupê — V3 (Bio-Editorial Enxuto)</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;600&family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Theme Base */
+      --bg-dark: #080A0F;
+      --bg-card: rgba(15, 20, 30, 0.7);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      
+      --text-main: #F3F4F6;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+      
+      /* Dynamic Accent Colors */
+      --accent-praxis: #10B981;
+      --accent-praxis-bright: #34D399;
+      --accent-praxis-glow: rgba(16, 185, 129, 0.2);
+      
+      --accent-fetish: #E11D48;
+      --accent-fetish-bright: #FB7185;
+      --accent-fetish-glow: rgba(225, 29, 72, 0.2);
+      
+      --accent-active: var(--accent-praxis);
+      --accent-active-bright: var(--accent-praxis-bright);
+      
+      /* Typography */
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'Fira Code', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.1) 0%, transparent 60%),
+        radial-gradient(circle at 80% 60%, rgba(225, 29, 72, 0.05) 0%, transparent 50%);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      padding: 40px 20px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 840px;
+      width: 100%;
+    }
+
+    /* HEADER HERO */
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .brand-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-praxis-bright);
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 6px 16px;
+      border-radius: 9999px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* PREÂMBULO CARD */
+    .preamble-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 32px;
+      margin-bottom: 40px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .preamble-card p {
+      font-size: 1.05rem;
+      color: #E2E8F0;
+      margin-bottom: 20px;
+      line-height: 1.75;
+    }
+
+    .slogan-box {
+      background: rgba(16, 185, 129, 0.08);
+      border-left: 3px solid var(--accent-praxis);
+      padding: 16px 20px;
+      border-radius: 0 12px 12px 0;
+      font-weight: 600;
+      color: #FFFFFF;
+      font-size: 1.02rem;
+    }
+
+    /* SEÇÃO DA MATRIZ 5X5 */
+    .matriz-section {
+      margin-bottom: 50px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: #FFFFFF;
+    }
+
+    /* TOGGLE SWITCHER (FETICHE ⟷ PRÁXIS) */
+    .view-toggle {
+      display: flex;
+      background: rgba(15, 20, 30, 0.9);
+      border: 1px solid var(--border-subtle);
+      padding: 4px;
+      border-radius: 12px;
+    }
+
+    .toggle-btn {
+      padding: 8px 18px;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .toggle-btn.active-fetish {
+      background: rgba(225, 29, 72, 0.2);
+      color: var(--accent-fetish-bright);
+      border: 1px solid rgba(225, 29, 72, 0.4);
+    }
+
+    .toggle-btn.active-praxis {
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--accent-praxis-bright);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    /* TABS DOS 5 EIXOS */
+    .eixos-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+      scrollbar-width: none;
+    }
+
+    .eixos-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-btn {
+      padding: 10px 20px;
+      border-radius: 12px;
+      background: rgba(15, 20, 30, 0.6);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.25s ease;
+    }
+
+    .tab-btn:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #FFFFFF;
+    }
+
+    .tab-btn.active {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: var(--accent-praxis);
+      color: #FFFFFF;
+      box-shadow: 0 0 15px var(--accent-praxis-glow);
+    }
+
+    /* CARD DO EIXO ATIVO */
+    .eixo-display-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 32px;
+      backdrop-filter: blur(16px);
+      transition: all 0.3s ease;
+    }
+
+    .eixo-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .eixo-badge {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-praxis-bright);
+      background: rgba(16, 185, 129, 0.1);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .eixo-heading {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      color: #FFFFFF;
+    }
+
+    .content-box {
+      padding: 24px;
+      border-radius: 14px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      transition: all 0.3s ease;
+    }
+
+    .content-box.mode-praxis {
+      background: rgba(16, 185, 129, 0.06);
+      border-left: 4px solid var(--accent-praxis);
+      color: #F3F4F6;
+    }
+
+    .content-box.mode-fetish {
+      background: rgba(225, 29, 72, 0.06);
+      border-left: 4px solid var(--accent-fetish);
+      color: #F3F4F6;
+    }
+
+    .mode-label {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .mode-praxis .mode-label {
+      color: var(--accent-praxis-bright);
+    }
+
+    .mode-fetish .mode-label {
+      color: var(--accent-fetish-bright);
+    }
+
+    /* SUB-CATEGORIAS GRID ENXUTA */
+    .subcat-title {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .subcat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+    }
+
+    .subcat-item {
+      background: rgba(8, 10, 15, 0.8);
+      border: 1px solid var(--border-subtle);
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .subcat-num {
+      font-family: var(--font-mono);
+      color: var(--accent-praxis);
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* ECOSSISTEMA & CONVOCATÓRIA */
+    .ecosystem-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 32px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .ecosystem-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+    }
+
+    .ecosystem-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto 24px;
+    }
+
+    .network-nodes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .node-pill {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-size: 0.88rem;
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+    }
+
+    .actions-bar {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border-radius: 9999px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent-praxis);
+      color: #080A0F;
+      box-shadow: 0 0 20px var(--accent-praxis-glow);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-praxis-bright);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    /* PRINT RULES */
+    @media print {
+      body {
+        background: #FFFFFF !important;
+        color: #111827 !important;
+      }
+      .eixos-tabs, .view-toggle, .actions-bar {
+        display: none !important;
+      }
+      .preamble-card, .eixo-display-card, .ecosystem-section {
+        background: #F9FAFB !important;
+        border: 1px solid #E5E7EB !important;
+        box-shadow: none !important;
+        color: #111827 !important;
+      }
+      h1, .section-title, .eixo-heading {
+        color: #111827 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- HERO HEADER -->
+    <header>
+      <div class="brand-tag">REDE URUPÊ // VIBRANÇA ONTOLÓGICA</div>
+      <h1>MANIFESTO REDE URUPÊ</h1>
+      <p class="subtitle">Carta de Despertar Ontológico e Catarse da Vida (Brasil, 2026)</p>
+    </header>
+
+    <!-- PREÂMBULO ENXUTO -->
+    <div class="preamble-card">
+      <p>
+        Tudo o que é essencial à existência humana foi sequestrado. Sob a ditadura da <strong>lei do valor</strong>, o planeta virou produto, o cuidado virou fardo, a técnica virou alienação, a autoridade virou opressão e o próprio tempo da nossa vida virou dinheiro.
+      </p>
+      <div class="slogan-box">
+        Devoramos a madeira morta do capital para germinar a vida plena no Comum.
+      </div>
+    </div>
+
+    <!-- MATRIZ ONTOLÓGICA 5X5 INTERATIVA -->
+    <div class="matriz-section">
+      <div class="section-header">
+        <h2 class="section-title">A Matriz Ontológica 5x5</h2>
+
+        <!-- TOGGLE SWITCHER -->
+        <div class="view-toggle">
+          <button class="toggle-btn active-praxis" id="btn-praxis" onclick="setMode('praxis')">🟢 Emancipação (Práxis)</button>
+          <button class="toggle-btn" id="btn-fetish" onclick="setMode('fetish')">🔴 Alienação (Fetiche)</button>
+        </div>
+      </div>
+
+      <!-- TABS DOS 5 EIXOS -->
+      <div class="eixos-tabs">
+        <button class="tab-btn active" onclick="selectTab(0)">I. TERRA</button>
+        <button class="tab-btn" onclick="selectTab(1)">II. ÁGUA</button>
+        <button class="tab-btn" onclick="selectTab(2)">III. AR</button>
+        <button class="tab-btn" onclick="selectTab(3)">IV. FOGO</button>
+        <button class="tab-btn" onclick="selectTab(4)">V. MICÉLIO</button>
+      </div>
+
+      <!-- DISPLAY DO EIXO SELECIONADO -->
+      <div class="eixo-display-card">
+        <div class="eixo-meta">
+          <span class="eixo-badge" id="eixo-num-badge">EIXO I</span>
+          <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim);" id="eixo-subtitle">Matéria &amp; Economia</span>
+        </div>
+        <h3 class="eixo-heading" id="eixo-title">A MATÉRIA E A ECONOMIA</h3>
+
+        <!-- CONTEÚDO DINÂMICO DE TEXTO -->
+        <div class="content-box mode-praxis" id="eixo-content-box">
+          <div class="mode-label" id="mode-label">🌱 A Práxis (A Afirmação Emancipatória)</div>
+          <p id="eixo-text-content">
+            O solo e o espaço são o metabolismo físico inalienável da sua existência. Afirmamos o direito incondicional de habitar sem cativeiro imobiliário, a soberania alimentar agroecológica e a destinação de toda a matéria ao valor de uso da vida. O espaço e os bens da natureza pertencem à reprodução da comunidade.
+          </p>
+        </div>
+
+        <!-- SUB-CATEGORIAS DO EIXO -->
+        <div class="subcat-title">5 Pilares Universais deste Eixo</div>
+        <div class="subcat-grid" id="subcat-grid-container">
+          <!-- Injetado via JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ECOSSISTEMA MICELAR & AÇÕES -->
+    <div class="ecosystem-section">
+      <h3 class="ecosystem-title">O Ecossistema de Infraestrutura Aberta</h3>
+      <p class="ecosystem-desc">
+        A Rede Urupê atua como comuna cibernética e provimento de software P2P local-first para alimentar a autonomia dos movimentos populares no território.
+      </p>
+
+      <div class="network-nodes">
+        <div class="node-pill">🌾 MST (Agroecologia)</div>
+        <div class="node-pill">🏠 MTST (Cozinhas &amp; Hortas)</div>
+        <div class="node-pill">🔥 CONAQ (Territórios)</div>
+        <div class="node-pill">🏹 APIB (Povos Originários)</div>
+      </div>
+
+      <div class="actions-bar">
+        <button class="btn btn-primary" onclick="window.print()">📄 Baixar Manifesto PDF</button>
+        <button class="btn btn-secondary" onclick="alert('Conectando à Comunidade Discord Urupê...')">💬 Entrar no Discord</button>
+        <button class="btn btn-secondary" onclick="alert('Acessando Repositório GitHub...')">💻 Código Aberto</button>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      Núcleo Urupê — Comuna Cibernética Ecossocialista &amp; Infraestrutura Aberta | Brasil, 2026
+    </footer>
+
+  </div>
+
+  <!-- JS LOGIC PARA NAVEGAÇÃO ENXUTA -->
+  <script>
+    // DADOS DOS 5 EIXOS (FONTE ÚNICA DE VERDADE)
+    const eixosData = [
+      {
+        num: "EIXO I",
+        subtitle: "Matéria & Economia",
+        title: "A MATÉRIA E A ECONOMIA",
+        praxis: "O solo e o espaço são o metabolismo físico inalienável da sua existência. Afirmamos o direito incondicional de habitar sem cativeiro imobiliário, a soberania alimentar agroecológica e a destinação de toda a matéria ao valor de uso da vida. O espaço e os bens da natureza pertencem à reprodução da comunidade.",
+        fetish: "Você foi ensinado a ver o solo como uma mercadoria distante e a tratar a moradia como uma dívida permanente que consome décadas do seu trabalho. A própria comida que nutre a sua família foi convertida em mercadoria especulativa, encarecida pelo agronegócio e envenenada por insumos sintéticos.",
+        subcats: ["1.1 Metabolismo Biofísico", "1.2 Espacialidade & Moradia", "1.3 Infraestrutura Material", "1.4 Forma-Valor & Trabalho", "1.5 Capital Financeiro & Dívida"]
+      },
+      {
+        num: "EIXO II",
+        subtitle: "Corporeidade & Afeto",
+        title: "A SUBJETIVIDADE E A CULTURA",
+        praxis: "No entanto, a sua subjetividade e a sua sensibilidade são o verdadeiro núcleo da existência. Afirmamos a desprivatização da dor, a coletivização do cuidado reprodutivo, o amparo comunitário e o resgate da cultura viva. A sua mente não é mercadoria; o seu afeto pertence à dignidade do seu ser.",
+        fetish: "A sua dor psíquica foi privatizada: disseram que a sua exaustão é um defeito individual, anestesiando a sua dor com fórmulas químicas para mantê-lo produzindo. O seu afeto foi isolado, a sua expressão cultural foi reduzida a entretenimento comercial e o trabalho de cuidado com a vida foi tornado invisível.",
+        subcats: ["2.1 Corporeidade Humana", "2.2 Racialidade & Colonialidade", "2.3 Reprodução & Cuidado", "2.4 Subjetividade & Saúde", "2.5 Ciclos de Vida & Gerações"]
+      },
+      {
+        num: "EIXO III",
+        subtitle: "Linguagem & Cosmotécnica",
+        title: "O INTELECTO E A TÉCNICA",
+        praxis: "Entretanto, a ciência, a linguagem e a técnica são expressões do intelecto comum da humanidade. Afirmamos a desintoxicação algorítmica, a Cosmotécnica soberana e o código livre: redes descentralizadas e ferramentas digitais criadas para expandir a sua autonomia, e não para aprisionar o seu foco.",
+        fetish: "A sua atenção foi sequestrada por telas e algoritmos de vigilância. Plataformas corporativas mineram o seu tempo, rentabilizam a sua ansiedade e utilizam o saber acumulado pela humanidade para criar máquinas que precarizam e vigiam o seu próprio trabalho.",
+        subcats: ["3.1 Linguagem & Comunicação", "3.2 Intelecto Geral", "3.3 Cosmotécnica & Automação", "3.4 Consciência & Pedagogia", "3.5 Memória & Estética"]
+      },
+      {
+        num: "EIXO IV",
+        subtitle: "Forma-Estado & Autodefesa",
+        title: "O PODER E A PRÁXIS",
+        praxis: "Contudo, a auto-organização de base e a ação direta são o seu poder inalienável. Afirmamos a superação das ilusões institucionais, a autodefesa comunal e o Poder Popular. A libertação real não virá de decretos no topo, mas da associação autônoma dos trabalhadores organizados em seu próprio território.",
+        fetish: "Ensinaram você a ser passivo: a terceirizar a sua força para rituais eleitorais e esperar que o Estado resolva a violência da sua rotina. Enquanto isso, o aparato policial e a justiça de classe disciplinam a periferia para garantir a ordem da propriedade.",
+        subcats: ["4.1 Forma-Estado", "4.2 Forma-Jurídica", "4.3 Coerção & Violência", "4.4 Autodefesa Comunal", "4.5 Poder Popular"]
+      },
+      {
+        num: "EIXO V",
+        subtitle: "Tempo Livre & Utopia",
+        title: "O TEMPO E O COMUM",
+        praxis: "Pois a riqueza autêntica do seu ser é a soberania sobre o próprio tempo, a convivência fraternal e o desfrute da vida. Afirmamos a libertação do tempo em relação ao relógio mercantil, a cooperação desmercantilizada, o riso antropofágico e a edificação de uma Sociedade dos Comuns.",
+        fetish: "Reduziram a sua existência ao valor das horas que você vende no mercado. Ensinaram você a sentir culpa quando descansa e a consumir mercadorias descartáveis para estancar o vazio de uma rotina exaustiva.",
+        subcats: ["5.1 Tempo Livre Soberano", "5.2 Alma & Espírito Humano", "5.3 Reciprocidade Comunal", "5.4 O Riso Antropofágico", "5.5 Utopia Concreta"]
+      }
+    ];
+
+    let currentTabIndex = 0;
+    let currentMode = 'praxis'; // 'praxis' or 'fetish'
+
+    function renderActiveEixo() {
+      const data = eixosData[currentTabIndex];
+
+      // Meta & Titles
+      document.getElementById('eixo-num-badge').innerText = data.num;
+      document.getElementById('eixo-subtitle').innerText = data.subtitle;
+      document.getElementById('eixo-title').innerText = data.title;
+
+      // Content & Mode
+      const box = document.getElementById('eixo-content-box');
+      const modeLabel = document.getElementById('mode-label');
+      const textContent = document.getElementById('eixo-text-content');
+
+      if (currentMode === 'praxis') {
+        box.className = 'content-box mode-praxis';
+        modeLabel.innerText = '🌱 A Práxis (A Afirmação Emancipatória)';
+        textContent.innerText = data.praxis;
+      } else {
+        box.className = 'content-box mode-fetish';
+        modeLabel.innerText = '⚠️ O Fetiche (A Alienação Mercantil)';
+        textContent.innerText = data.fetish;
+      }
+
+      // Subcategories Grid
+      const subcatGrid = document.getElementById('subcat-grid-container');
+      subcatGrid.innerHTML = data.subcats.map(sub => `
+        <div class="subcat-item">
+          <span class="subcat-num">•</span>
+          <span>${sub}</span>
+        </div>
+      `).join('');
+    }
+
+    function selectTab(index) {
+      currentTabIndex = index;
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      tabBtns.forEach((btn, i) => {
+        if (i === index) btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+      renderActiveEixo();
+    }
+
+    function setMode(mode) {
+      currentMode = mode;
+      const btnPraxis = document.getElementById('btn-praxis');
+      const btnFetish = document.getElementById('btn-fetish');
+
+      if (mode === 'praxis') {
+        btnPraxis.className = 'toggle-btn active-praxis';
+        btnFetish.className = 'toggle-btn';
+      } else {
+        btnPraxis.className = 'toggle-btn';
+        btnFetish.className = 'toggle-btn active-fetish';
+      }
+      renderActiveEixo();
+    }
+
+    // Inicialização
+    renderActiveEixo();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Núcleo Urupê — Pôster Agitprop V2</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;800&family=Lora:ital,wght@0,500;0,600;1,400&family=Syne:wght@800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* PALETA GRUVBOX OFFICIAL */
+    :root {
+      --gb-bg: #282828;
+      --gb-bg-hard: #1d2021;
+      --gb-bg-soft: #32302f;
+      --gb-bg-card: #3c3836;
+      
+      --gb-fg: #ebdbb2;
+      --gb-fg-dim: #a89984;
+      
+      --gb-red: #fb4934;
+      --gb-green: #b8bb26;
+      --gb-yellow: #fabd2f;
+      --gb-blue: #83a598;
+      --gb-purple: #d3869b;
+      --gb-aqua: #8ec07c;
+      --gb-orange: #fe8019;
+      
+      --font-display: 'Syne', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-serif: 'Lora', serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--gb-bg-hard);
+      color: var(--gb-fg);
+      font-family: var(--font-serif);
+      line-height: 1.6;
+      padding: 40px 16px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* PÔSTER CONTAINER */
+    .poster-frame {
+      max-width: 680px;
+      width: 100%;
+      background: var(--gb-bg);
+      border: 4px solid var(--gb-yellow);
+      box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.8),
+        0 0 0 10px var(--gb-bg-hard),
+        0 0 0 14px var(--gb-green);
+      padding: 40px 32px;
+      text-align: center;
+      position: relative;
+    }
+
+    /* HEADER BANNER */
+    .brand-header {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gb-bg-hard);
+      background: var(--gb-yellow);
+      padding: 6px 16px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: 2.6rem;
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--gb-red);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+    }
+
+    /* ARTWORK CONTAINER */
+    .art-frame {
+      border: 3px solid var(--gb-green);
+      background: var(--gb-bg-hard);
+      padding: 10px;
+      margin-bottom: 28px;
+    }
+
+    .art-frame img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* PREÂMBULO DIRETO */
+    .preamble-box {
+      background: var(--gb-bg-soft);
+      border-left: 4px solid var(--gb-yellow);
+      padding: 20px 24px;
+      font-size: 1.12rem;
+      color: var(--gb-fg);
+      text-align: left;
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    /* CONVOCAÇÃO DISCORD COMUNA CIBERNÉTICA */
+    .callout-box {
+      background: var(--gb-bg-card);
+      border: 2px solid var(--gb-green);
+      padding: 24px;
+      border-radius: 4px;
+    }
+
+    .callout-tag {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--gb-orange);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .callout-main-text {
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--gb-green);
+      line-height: 1.5;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 28px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--gb-fg-dim);
+      letter-spacing: 0.05em;
+    }
+
+    /* IMPRESSÃO */
+    @media print {
+      body {
+        background: #FFF !important;
+        color: #000 !important;
+      }
+      .poster-frame {
+        border-color: #000 !important;
+        box-shadow: none !important;
+        background: #FFF !important;
+      }
+      h1, .callout-main-text {
+        color: #000 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="poster-frame">
+
+    <!-- MARCA DO NÚCLEO -->
+    <div class="brand-header">
+      NÚCLEO URUPÊ
+    </div>
+
+    <!-- TÍTULO PRINCIPAL -->
+    <h1>DECOMPOSIÇÃO DA ALIENAÇÃO</h1>
+
+    <!-- ARTE AGITPROP VETORIAL V3 -->
+    <div class="art-frame">
+      <img src="agitprop-urupe-v3-monitor-ligado.png" alt="Arte Agitprop Núcleo Urupê — Urupê Ligado na Net (Eco-Socialismo ou Extinção)">
+    </div>
+
+    <!-- PREÂMBULO DIRETO AO PONTO -->
+    <div class="preamble-box">
+      Tudo o que é essencial à existência humana foi sequestrado. Sob a ditadura da <strong>lei do valor</strong>, o planeta virou produto, o cuidado virou fardo, a técnica virou alienação, a autoridade virou opressão e o próprio tempo da nossa vida virou dinheiro.
+    </div>
+
+    <!-- CONVOCAÇÃO DO DISCORD -->
+    <div class="callout-box">
+      <div class="callout-tag">📢 CONVOCAÇÃO</div>
+      <div class="callout-main-text">
+        Em breve, abertura do discord para a construção de uma comuna cibernética voltada para o futuro.
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      REDE URUPÊ // COMUNA CIBERNÉTICA ECOSSOCIALISTA (2026)
+    </footer>
+
+  </div>
+
+</body>
+</html>

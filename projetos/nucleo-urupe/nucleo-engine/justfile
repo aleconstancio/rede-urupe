@@ -1,0 +1,66 @@
+# Maze — Discord Cognitive Bot
+
+set shell := ["bash", "-euo", "pipefail", "-c"]
+
+# List available commands
+default:
+    @just --list
+
+# Development
+
+# Build and run the bot
+run: build
+    ./bot.exe
+
+# Build frontend + Go binary
+build:
+    cd frontend && bun install && bun run build
+    go build -o bot.exe ./cmd/bot
+    @if [ -d "internal/presentation/web/knowledge_dist" ]; then echo "Knowledge map included."; else echo "Tip: run 'just build-quartz' to include the knowledge map."; fi
+
+# Build Quartz knowledge map
+build-quartz:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    VAULT_REPO="${VAULT_REPO:-../vault}"
+    QUARTZ_DIR="${QUARTZ_DIR:-../quartz}"
+    KNOWLEDGE_DIST="internal/presentation/web/knowledge_dist"
+    echo "Building knowledge map from $VAULT_REPO..."
+    cd "$QUARTZ_DIR" && npx quartz build
+    rm -rf "$KNOWLEDGE_DIST"
+    cp -r "$QUARTZ_DIR/public" "$KNOWLEDGE_DIST"
+    echo "Knowledge map built to $KNOWLEDGE_DIST"
+
+# Code Quality
+
+# Run all linters
+lint:
+    golangci-lint run
+    cd frontend && bun run lint
+
+# Format all code
+format:
+    gofmt -w .
+    cd frontend && bun run format
+
+# Type checking
+check:
+    go vet ./...
+    cd frontend && bun run check
+
+# Testing
+
+# Run all tests
+test:
+    go test -v ./...
+
+# Run tests with race detector
+test:race:
+    go test -v -race ./...
+
+# Cleanup
+
+# Remove build artifacts
+clean:
+    rm -f bot.exe
+    rm -rf bin/ frontend/node_modules frontend/.svelte-kit frontend/build

@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+bun.lockb
+
+# Build Outputs
+dist/
+static_dist/
+build/
+*.exe
+*.dll
+*.so
+*.dylib
+*.bin
+tmp/
+
+# SQLite & Local Data
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+data/*.db
+projetos/nucleo-urupe/data/*.db
+
+# Environment & Credentials
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# IDE & OS Files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.suo
+*.user
+
+# Temp & Cache
+.cache/
+.svelte-kit/
+.vite/
