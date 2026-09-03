@@ -1,70 +1,116 @@
 <script>
-    import { Compass, Eye, ShieldAlert, Satellite, MapPin, Layers, Trees } from 'lucide-svelte';
+    import { onMount } from 'svelte';
+    import { Compass, Satellite, Flame, Droplets, MapPin, Layers, AlertTriangle, ShieldCheck, Activity, RefreshCw } from 'lucide-svelte';
 
-    let satelliteFeeds = [
-        { collection: 'CBERS-4A', sensor: 'WPM (8m)', target: 'Bacia Amazônica', status: 'Ativo' },
-        { collection: 'Sentinel-2', sensor: 'MSI (10m)', target: 'Mata Atlântica / SP', status: 'Sincronizado' },
-        { collection: 'Amazonia-1', sensor: 'WFC (64m)', target: 'Cerrado Central', status: 'Ativo' }
+    let activeLayer = $state('ndvi'); // 'ndvi' | 'fires' | 'water' | 'territories'
+
+    const territories = [
+        { name: 'Assentamento Terra Livre (PR)', area: '1.240 ha', ndvi: 0.78, status: 'Saudável', alerts: 0 },
+        { name: 'Comunidade Rio Vermelho (BA)', area: '850 ha', ndvi: 0.62, status: 'Atenção Hídrica', alerts: 1 },
+        { name: 'Horta Comunitária Zona Sul (SP)', area: '12 ha', ndvi: 0.81, status: 'Excelente', alerts: 0 },
+        { name: 'Reserva Manejada Tapajós (PA)', area: '4.500 ha', ndvi: 0.85, status: 'Monitorando Focos', alerts: 2 }
     ];
 
-    let alerts = [
-        { type: 'Alerta de Queimada', location: 'Região Norte SP', level: 'Alto (NBR Anomalia)', date: 'Hoje' },
-        { type: 'Estoque de Carbono', location: 'Assentamento Rural #4', level: 'Estável (+2.4% NDVI)', date: 'Ontem' }
+    const satelliteFeeds = [
+        { satellite: 'Sentinel-2A', passTime: 'Hoje, 09:30', status: 'Processado 100%' },
+        { satellite: 'Landsat 9', passTime: 'Hoje, 06:15', status: 'Indexado FTS5' },
+        { satellite: 'CBERS-4A', passTime: 'Ontem, 14:00', status: 'Nuvem Limpa' }
     ];
 </script>
 
-<div class="guara-view">
+<div class="guara-geo-view">
     <div class="view-header">
         <div>
-            <p class="eyebrow">Módulo Guará 🪶</p>
-            <h2 class="font-serif text-2xl font-bold">Inteligência Geoespacial & Sensoriamento Ambiental</h2>
+            <p class="eyebrow text-cyan">Inteligência Geoespacial & Satélites</p>
+            <h2 class="font-serif text-2xl font-bold flex items-center gap-2">
+                <span>Guará Geo 🪶</span>
+                <span class="badge-tag">Monitoramento Territorial</span>
+            </h2>
         </div>
-        <button class="btn btn-primary">
-            <Satellite size={18} />
-            <span>Consultar Satélites INPE/Sentinel</span>
-        </button>
+
+        <div class="layer-selector">
+            <button class="layer-btn {activeLayer === 'ndvi' ? 'active' : ''}" onclick={() => activeLayer = 'ndvi'}>
+                <Layers size={16} /> Índice NDVI
+            </button>
+            <button class="layer-btn {activeLayer === 'fires' ? 'active' : ''}" onclick={() => activeLayer = 'fires'}>
+                <Flame size={16} /> Focos de Calor
+            </button>
+            <button class="layer-btn {activeLayer === 'water' ? 'active' : ''}" onclick={() => activeLayer = 'water'}>
+                <Droplets size={16} /> Estresse Hídrico
+            </button>
+        </div>
     </div>
 
-    <div class="guara-grid">
-        <!-- Satellites Stream -->
-        <div class="panel">
+    <div class="geo-grid">
+        <!-- Main Map Simulation Canvas -->
+        <div class="panel map-panel">
             <div class="panel-header">
-                <h3>Coleções de Satélites & Constelações</h3>
+                <span class="map-title">Visão de Satélite em Tempo Real ({activeLayer.toUpperCase()})</span>
+                <span class="live-badge"><Activity size={12} /> Feed Sentinel-2</span>
             </div>
-            <div class="panel-body">
-                <div class="sats-list">
-                    {#each satelliteFeeds as s}
-                        <div class="sat-card">
-                            <div class="sat-icon">
-                                <Satellite size={24} class="text-emerald" />
-                            </div>
-                            <div class="sat-details">
-                                <h4>{s.collection} ({s.sensor})</h4>
-                                <p>Alvo: <b>{s.target}</b></p>
-                            </div>
-                            <span class="status-badge">{s.status}</span>
-                        </div>
-                    {/each}
+
+            <div class="map-canvas">
+                <div class="map-overlay">
+                    <div class="geo-pin pin-1" title="Terra Livre">
+                        <MapPin size={24} class="text-cyan" />
+                        <span class="pin-label">Terra Livre</span>
+                    </div>
+                    <div class="geo-pin pin-2" title="Rio Vermelho">
+                        <MapPin size={24} class="text-amber" />
+                        <span class="pin-label">Rio Vermelho</span>
+                    </div>
+                    <div class="geo-pin pin-3" title="Tapajós">
+                        <MapPin size={24} class="text-emerald" />
+                        <span class="pin-label">Tapajós</span>
+                    </div>
+                </div>
+
+                <div class="map-legend">
+                    <span class="leg-title">Índice de Vigor Vegetal (NDVI)</span>
+                    <div class="legend-bar">
+                        <span>0.0 (Solo Exposto)</span>
+                        <div class="gradient-strip"></div>
+                        <span>1.0 (Massa Densa)</span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Environmental Alerts -->
-        <div class="panel">
-            <div class="panel-header">
-                <h3>Alertas Territoriais & Análise Espectral</h3>
-            </div>
-            <div class="panel-body">
-                <div class="alerts-list">
-                    {#each alerts as a}
-                        <div class="alert-card">
-                            <div class="alert-header">
-                                <ShieldAlert size={18} class="text-amber" />
-                                <span class="alert-title">{a.type}</span>
-                                <span class="date">{a.date}</span>
+        <!-- Right Side: Territories Status & Feeds -->
+        <div class="side-col">
+            <div class="panel">
+                <div class="panel-header">
+                    <h3>Territórios Monitorados ({territories.length})</h3>
+                </div>
+                <div class="territories-list">
+                    {#each territories as ter}
+                        <div class="ter-card">
+                            <div class="ter-header">
+                                <span class="ter-name">{ter.name}</span>
+                                <span class="ter-status {ter.alerts > 0 ? 'alert' : 'ok'}">{ter.status}</span>
                             </div>
-                            <p class="loc"><MapPin size={14} /> {a.location}</p>
-                            <span class="lvl">{a.level}</span>
+                            <div class="ter-stats">
+                                <span>Área: <b>{ter.area}</b></span>
+                                <span>NDVI: <b>{ter.ndvi}</b></span>
+                            </div>
+                        </div>
+                    {/each}
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <h3>Passagens de Satélites</h3>
+                </div>
+                <div class="feeds-list">
+                    {#each satelliteFeeds as sat}
+                        <div class="sat-item">
+                            <Satellite size={18} class="text-cyan" />
+                            <div class="sat-info">
+                                <span class="sat-name">{sat.satellite}</span>
+                                <span class="sat-time">{sat.passTime}</span>
+                            </div>
+                            <span class="sat-status">{sat.status}</span>
                         </div>
                     {/each}
                 </div>
@@ -74,140 +120,74 @@
 </div>
 
 <style>
-    .guara-view {
-        padding: 2rem;
-        max-width: 1600px;
-        margin: 0 auto;
-    }
+    .guara-geo-view { padding: 2rem; max-width: 1600px; margin: 0 auto; }
+    .view-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+    .eyebrow { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+    .text-cyan { color: #06b6d4; }
+    .badge-tag { font-size: 0.75rem; background: rgba(6, 182, 212, 0.15); color: #06b6d4; padding: 0.2rem 0.6rem; border-radius: 9999px; }
 
-    .view-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 2rem;
-    }
+    .layer-selector { display: flex; gap: 0.5rem; background: var(--card); border: 1px solid var(--border); padding: 0.3rem; border-radius: var(--radius); }
+    .layer-btn { display: flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; border-radius: calc(var(--radius) - 2px); font-size: 0.85rem; font-weight: 600; background: transparent; border: none; color: var(--muted-foreground); cursor: pointer; }
+    .layer-btn.active { background: #06b6d4; color: var(--background); }
 
-    .eyebrow {
-        font-size: 0.75rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--primary);
-    }
+    .geo-grid { display: grid; grid-template-columns: 1fr 380px; gap: 2rem; }
+    .panel { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .panel-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .panel-header h3 { font-weight: 600; font-size: 1rem; }
+    .map-title { font-weight: 700; font-size: 0.9rem; }
 
-    .guara-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-    }
+    .live-badge { font-size: 0.75rem; color: #06b6d4; font-weight: 700; display: flex; align-items: center; gap: 0.4rem; }
 
-    .panel {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
+    /* Map Canvas Simulation */
+    .map-canvas {
+        height: 520px;
+        background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+        position: relative;
         overflow: hidden;
     }
 
-    .panel-header {
-        padding: 1.25rem 1.5rem;
-        border-bottom: 1px solid var(--border);
-    }
+    .map-overlay { position: absolute; inset: 0; }
+    .geo-pin { position: absolute; display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: transform 0.2s; }
+    .geo-pin:hover { transform: scale(1.15); }
+    .pin-label { font-size: 0.75rem; font-weight: 700; background: rgba(0, 0, 0, 0.75); color: white; padding: 0.2rem 0.5rem; border-radius: 4px; border: 1px solid var(--border); margin-top: 0.2rem; }
 
-    .panel-header h3 {
-        font-weight: 600;
-    }
+    .pin-1 { top: 30%; left: 40%; }
+    .pin-2 { top: 55%; left: 65%; }
+    .pin-3 { top: 25%; left: 25%; }
 
-    .panel-body {
-        padding: 1.5rem;
-    }
-
-    .sats-list, .alerts-list {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .sat-card {
-        background: var(--background);
+    .map-legend {
+        position: absolute;
+        bottom: 1.5rem;
+        left: 1.5rem;
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(10px);
         border: 1px solid var(--border);
+        padding: 1rem;
         border-radius: var(--radius);
-        padding: 1.25rem;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
+        width: 320px;
     }
 
-    .sat-details h4 {
-        font-size: 0.95rem;
-        font-weight: 600;
-    }
+    .leg-title { font-size: 0.75rem; font-weight: 700; color: #06b6d4; display: block; margin-bottom: 0.5rem; }
+    .legend-bar { font-size: 0.7rem; color: var(--muted-foreground); display: flex; flex-direction: column; gap: 0.3rem; }
+    .gradient-strip { height: 8px; border-radius: 4px; background: linear-gradient(to right, #ef4444, #f59e0b, #10b981, #06b6d4); }
 
-    .sat-details p {
-        font-size: 0.8rem;
-        color: var(--muted-foreground);
-    }
+    .side-col { display: flex; flex-direction: column; gap: 2rem; }
 
-    .status-badge {
-        margin-left: auto;
-        font-size: 0.75rem;
-        background: oklch(from var(--primary) l c h / 0.15);
-        color: var(--primary);
-        padding: 0.2rem 0.6rem;
-        border-radius: 9999px;
-        font-weight: 600;
-    }
+    .territories-list { padding: 1.25rem; display: flex; flex-direction: column; gap: 1rem; }
+    .ter-card { background: var(--background); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; }
+    .ter-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+    .ter-name { font-weight: 700; font-size: 0.9rem; }
+    .ter-status { font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 600; }
+    .ter-status.ok { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+    .ter-status.alert { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+    .ter-stats { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--muted-foreground); }
 
-    .alert-card {
-        background: var(--background);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 1.25rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
+    .feeds-list { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .sat-item { display: flex; align-items: center; gap: 0.75rem; background: var(--background); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.75rem; }
+    .sat-info { display: flex; flex-direction: column; flex: 1; }
+    .sat-name { font-weight: 700; font-size: 0.85rem; }
+    .sat-time { font-size: 0.75rem; color: var(--muted-foreground); }
+    .sat-status { font-size: 0.75rem; color: #06b6d4; font-weight: 600; }
 
-    .alert-header {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.9rem;
-        font-weight: 600;
-    }
-
-    .date {
-        margin-left: auto;
-        font-size: 0.75rem;
-        color: var(--muted-foreground);
-    }
-
-    .loc {
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
-        font-size: 0.85rem;
-        color: var(--muted-foreground);
-    }
-
-    .lvl {
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: var(--primary);
-    }
-
-    .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.6rem 1.2rem;
-        border-radius: var(--radius);
-        font-weight: 600;
-        cursor: pointer;
-        border: none;
-    }
-
-    .btn-primary {
-        background: var(--primary);
-        color: var(--background);
-    }
+    @media (max-width: 1000px) { .geo-grid { grid-template-columns: 1fr; } }
 </style>

@@ -13,7 +13,6 @@
     import JataiOpsView from './lib/views/JataiOpsView.svelte';
     import MemoryView from './lib/views/MemoryView.svelte';
     import AnalyticsView from './lib/views/AnalyticsView.svelte';
-    import AdminView from './lib/views/AdminView.svelte';
 
     let currentMode = $state('public'); // 'public' | 'admin'
     let activeView = $state('dashboard');
@@ -26,7 +25,6 @@
         guara: 'Guará 🪶 (Inteligência Geoespacial)',
         jatai: 'Jataí Ops 🐝 (Frota B2B & Transparência)',
         analytics: 'Analítica & Métricas',
-        admin: 'Configurações de Governança',
         memory: 'Arquivos Cognitivos'
     };
 
@@ -37,8 +35,7 @@
         { id: 'spore', label: 'Spore Ops 🍄', icon: Send, description: 'Guerrilha e agitprop' },
         { id: 'guara', label: 'Guará Geo 🪶', icon: Compass, description: 'Satélites e meio ambiente' },
         { id: 'jatai', label: 'Jataí Ops 🐝', icon: Cpu, description: 'Frota B2B e faturamento' },
-        { id: 'analytics', label: 'Analítica', icon: Activity, description: 'Gráficos e tendências' },
-        { id: 'admin', label: 'Admin', icon: Shield, description: 'Governança do servidor' }
+        { id: 'analytics', label: 'Analítica', icon: Activity, description: 'Gráficos e tendências' }
     ];
 
     let engineStatus = $state(null);
@@ -127,7 +124,6 @@
                             {:else if activeView === 'guara'}<GuaraGeoView />
                             {:else if activeView === 'jatai'}<JataiOpsView />
                             {:else if activeView === 'analytics'}<AnalyticsView />
-                            {:else if activeView === 'admin'}<AdminView />
                             {:else if activeView === 'memory'}<MemoryView />
                             {/if}
                         </div>
