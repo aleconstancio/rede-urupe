@@ -12,9 +12,9 @@ require (
 	google.golang.org/genai v1.56.0
 )
 
-replace github.com/aleconstancio/minos => /home/ale/Projects/minos
+replace github.com/aleconstancio/minos => /home/ale/Projects/jatai
 
-replace github.com/aleconstancio/talos/v2 => /home/ale/Projects/talos
+replace github.com/aleconstancio/talos/v2 => /home/ale/Projects/arandu
 
 require (
 	cloud.google.com/go v0.116.0 // indirect
