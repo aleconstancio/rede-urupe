@@ -233,32 +233,14 @@ func handleProvision5x5(s *discordgo.Session, guildID string) (string, error) {
 		return "Sessão do Discord não iniciada.", nil
 	}
 
+	topChannels := []ChannelSpec{
+		{Name: "leia-me-manifesto-e-regras", Type: discordgo.ChannelTypeGuildText},
+		{Name: "quarentena-solicitar-acesso", Type: discordgo.ChannelTypeGuildText},
+	}
+
 	matrix := []CategorySpec{
 		{
-			Name: "📢 1. RECEPÇÃO & ANÚNCIOS",
-			Channels: []ChannelSpec{
-				{Name: "boas-vindas", Type: discordgo.ChannelTypeGuildText},
-				{Name: "regras-e-diretrizes", Type: discordgo.ChannelTypeGuildText},
-				{Name: "anuncios-oficiais", Type: discordgo.ChannelTypeGuildText},
-			},
-		},
-		{
-			Name: "🔊 2. TRANSMISSÕES & SALAS DE VOZ",
-			Channels: []ChannelSpec{
-				{Name: "🔊 Rádio Urupê (Ao Vivo)", Type: discordgo.ChannelTypeGuildVoice},
-				{Name: "🔊 Assembleia Geral", Type: discordgo.ChannelTypeGuildVoice},
-				{Name: "🔊 Sala de Estudos & Debates", Type: discordgo.ChannelTypeGuildVoice},
-			},
-		},
-		{
-			Name: "🍄 3. RECEPTÁCULO DA MICÉLIA",
-			Channels: []ChannelSpec{
-				{Name: "fale-com-a-micelia", Type: discordgo.ChannelTypeGuildText},
-				{Name: "memorias-da-frente", Type: discordgo.ChannelTypeGuildText},
-			},
-		},
-		{
-			Name: "💬 4. FÓRUNS TEMÁTICOS OFICIAIS",
+			Name: "📌 1. INFORMAÇÕES & FÓRUNS",
 			Channels: []ChannelSpec{
 				{Name: "formacao-e-teoria-ecossocialista", Type: discordgo.ChannelTypeGuildForum},
 				{Name: "acao-direta-e-brigadas", Type: discordgo.ChannelTypeGuildForum},
@@ -268,10 +250,35 @@ func handleProvision5x5(s *discordgo.Session, guildID string) (string, error) {
 			},
 		},
 		{
-			Name: "⚔️ 5. BRIGADAS & SUPORTE",
+			Name: "💬 2. CANAIS COMUNS",
 			Channels: []ChannelSpec{
-				{Name: "sala-de-imprensa-spore-ops", Type: discordgo.ChannelTypeGuildText},
-				{Name: "ajuda-e-suporte-tecnico", Type: discordgo.ChannelTypeGuildText},
+				{Name: "bate-papo-geral", Type: discordgo.ChannelTypeGuildText},
+				{Name: "midia-e-compartilhamento", Type: discordgo.ChannelTypeGuildText},
+				{Name: "🔊 Praça Pública (Voz)", Type: discordgo.ChannelTypeGuildVoice},
+			},
+		},
+		{
+			Name: "📖 3. FRENTES DE ESTUDO",
+			Channels: []ChannelSpec{
+				{Name: "clube-de-leitura", Type: discordgo.ChannelTypeGuildText},
+				{Name: "debates-ideologicos", Type: discordgo.ChannelTypeGuildText},
+				{Name: "🔊 Sala de Estudos (Voz)", Type: discordgo.ChannelTypeGuildVoice},
+			},
+		},
+		{
+			Name: "⚔️ 4. FRENTES DE ATUAÇÃO",
+			Channels: []ChannelSpec{
+				{Name: "brigadas-e-acao-direta", Type: discordgo.ChannelTypeGuildText},
+				{Name: "agitprop-e-comunicacao", Type: discordgo.ChannelTypeGuildText},
+				{Name: "imprensa-spore-ops", Type: discordgo.ChannelTypeGuildText},
+			},
+		},
+		{
+			Name: "🏛️ 5. INSTITUCIONAL E COMUNICAÇÃO",
+			Channels: []ChannelSpec{
+				{Name: "anuncios-oficiais", Type: discordgo.ChannelTypeGuildText},
+				{Name: "fale-com-a-micelia", Type: discordgo.ChannelTypeGuildText},
+				{Name: "memorias-da-frente", Type: discordgo.ChannelTypeGuildText},
 			},
 		},
 	}
@@ -279,6 +286,18 @@ func handleProvision5x5(s *discordgo.Session, guildID string) (string, error) {
 	createdCategories := 0
 	createdChannels := 0
 
+	// 1. Criar canais fora de categoria (Topo)
+	for _, chSpec := range topChannels {
+		_, err := s.GuildChannelCreateComplex(guildID, discordgo.GuildChannelCreateData{
+			Name: chSpec.Name,
+			Type: chSpec.Type,
+		})
+		if err == nil {
+			createdChannels++
+		}
+	}
+
+	// 2. Criar categorias e seus respectivos canais/fóruns
 	for _, catSpec := range matrix {
 		cat, err := s.GuildChannelCreateComplex(guildID, discordgo.GuildChannelCreateData{
 			Name: catSpec.Name,
@@ -301,5 +320,5 @@ func handleProvision5x5(s *discordgo.Session, guildID string) (string, error) {
 		}
 	}
 
-	return fmt.Sprintf(" Matriz da Rede Urupê provisionada com sucesso no Discord!\n- **%d Categorias** criadas\n- **%d Canais & Fóruns** estruturados (Fóruns, Voz, Anúncios, Micélia e Brigadas).", createdCategories, createdChannels), nil
+	return fmt.Sprintf(" Matriz Enxuta da Rede Urupê provisionada com sucesso no Discord!\n- **2 Canais de Topo** (#leia-me e #quarentena)\n- **%d Categorias** criadas\n- **%d Canais & Fóruns** estruturados (com 5 Fóruns Temáticos e Canais de Estudo/Atuação/Comunicação).", createdCategories, createdChannels), nil
 }
