@@ -14,6 +14,9 @@ func (r *Repository) seedInitialData() error {
 	if err := r.ensureCMSTables(); err != nil {
 		return err
 	}
+	if err := r.ensureManifestoTables(); err != nil {
+		return err
+	}
 	if err := r.ensureV33PersonaSeed(); err != nil {
 		return err
 	}
@@ -21,6 +24,9 @@ func (r *Repository) seedInitialData() error {
 		return err
 	}
 	if err := r.ensureCMSArticlesSeed(); err != nil {
+		return err
+	}
+	if err := r.ensureManifestoSeed(); err != nil {
 		return err
 	}
 	return r.ensureShowcaseProjects()

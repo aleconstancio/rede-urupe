@@ -89,6 +89,10 @@ func (s *Server) Start() {
 	mux.HandleFunc("/api/cms/article", handleCMSArticleGet(s.repo))
 	mux.HandleFunc("/api/cms/article/save", handleCMSArticleSave(s.repo))
 	mux.HandleFunc("/api/cms/article/delete", handleCMSArticleDelete(s.repo))
+	mux.HandleFunc("/api/manifesto/versions", handleManifestoVersionsList(s.repo))
+	mux.HandleFunc("/api/manifesto/active", handleManifestoActiveGet(s.repo))
+	mux.HandleFunc("/api/manifesto/save", handleManifestoVersionSave(s.repo))
+	mux.HandleFunc("/api/manifesto/activate", handleManifestoVersionActivate(s.repo))
 
 	// Serve Quartz knowledge map at /knowledge/*
 	knowledgePath := "internal/presentation/web/knowledge_dist"

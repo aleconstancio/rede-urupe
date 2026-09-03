@@ -7,11 +7,11 @@
     import PublicLandingView from './lib/views/PublicLandingView.svelte';
     import DashboardView from './lib/views/DashboardView.svelte';
     import CMSArticleEditor from './lib/views/CMSArticleEditor.svelte';
+    import MiceliumStudio from './lib/views/MiceliumStudio.svelte';
     import SporeOpsView from './lib/views/SporeOpsView.svelte';
     import GuaraGeoView from './lib/views/GuaraGeoView.svelte';
     import JataiOpsView from './lib/views/JataiOpsView.svelte';
     import MemoryView from './lib/views/MemoryView.svelte';
-    import PersonaView from './lib/views/PersonaView.svelte';
     import AnalyticsView from './lib/views/AnalyticsView.svelte';
     import AdminView from './lib/views/AdminView.svelte';
 
@@ -21,25 +21,24 @@
     const viewLabels = {
         dashboard: 'Centro de Comando',
         cms: 'CMS & Publicações Públicas',
+        micelium: 'Estúdio Micélium 🍄 (IA & Manifesto)',
         spore: 'Spore Ops 🍄 (Guerrilha & Agitprop)',
         guara: 'Guará 🪶 (Inteligência Geoespacial)',
         jatai: 'Jataí Ops 🐝 (Frota B2B & Transparência)',
         analytics: 'Analítica & Métricas',
         admin: 'Configurações de Governança',
-        memory: 'Arquivos Cognitivos',
-        persona: 'Estúdio de Persona'
+        memory: 'Arquivos Cognitivos'
     };
 
     const navItems = [
         { id: 'dashboard', label: 'Centro de Comando', icon: Home, description: 'Painel principal e métricas' },
         { id: 'cms', label: 'CMS Publicações', icon: FileText, description: 'Artigos e site público' },
+        { id: 'micelium', label: 'Micélium 🍄', icon: Sparkles, description: 'Manifesto, IA & Memórias' },
         { id: 'spore', label: 'Spore Ops 🍄', icon: Send, description: 'Guerrilha e agitprop' },
         { id: 'guara', label: 'Guará Geo 🪶', icon: Compass, description: 'Satélites e meio ambiente' },
         { id: 'jatai', label: 'Jataí Ops 🐝', icon: Cpu, description: 'Frota B2B e faturamento' },
         { id: 'analytics', label: 'Analítica', icon: Activity, description: 'Gráficos e tendências' },
-        { id: 'admin', label: 'Admin', icon: Shield, description: 'Governança do servidor' },
-        { id: 'memory', label: 'Arquivos Cognitivos', icon: BrainCircuit, description: 'Cápsulas de memória' },
-        { id: 'persona', label: 'Estúdio de Persona', icon: Sparkles, description: 'Edição da Micélia' }
+        { id: 'admin', label: 'Admin', icon: Shield, description: 'Governança do servidor' }
     ];
 
     let engineStatus = $state(null);
@@ -76,7 +75,7 @@
                                 <Sparkles size={22} style="color: var(--primary)" />
                                 <span class="font-serif text-lg font-bold" style="color: var(--foreground)">Núcleo Urupê</span>
                             </div>
-                            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-[var(--muted)] text-[var(--primary)]">ADMIN</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-[var(--muted)] text-[var(--primary)]">v1.2</span>
                         </div>
                         <nav class="flex flex-col gap-1">
                             {#each navItems as item}
@@ -123,13 +122,13 @@
                         <div class="view-wrapper">
                             {#if activeView === 'dashboard'}<DashboardView />
                             {:else if activeView === 'cms'}<CMSArticleEditor />
+                            {:else if activeView === 'micelium'}<MiceliumStudio />
                             {:else if activeView === 'spore'}<SporeOpsView />
                             {:else if activeView === 'guara'}<GuaraGeoView />
                             {:else if activeView === 'jatai'}<JataiOpsView />
                             {:else if activeView === 'analytics'}<AnalyticsView />
                             {:else if activeView === 'admin'}<AdminView />
                             {:else if activeView === 'memory'}<MemoryView />
-                            {:else if activeView === 'persona'}<PersonaView />
                             {/if}
                         </div>
                     </main>
