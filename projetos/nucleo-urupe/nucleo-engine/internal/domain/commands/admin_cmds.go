@@ -234,51 +234,63 @@ func handleProvision5x5(s *discordgo.Session, guildID string) (string, error) {
 	}
 
 	topChannels := []ChannelSpec{
-		{Name: "leia-me-manifesto-e-regras", Type: discordgo.ChannelTypeGuildText},
-		{Name: "quarentena-solicitar-acesso", Type: discordgo.ChannelTypeGuildText},
+		{Name: "📜│leia-me", Type: discordgo.ChannelTypeGuildText},
 	}
 
 	matrix := []CategorySpec{
 		{
-			Name: "📌 1. INFORMAÇÕES & FÓRUNS",
+			Name: "📌 INFORMAÇÕES",
 			Channels: []ChannelSpec{
-				{Name: "formacao-e-teoria-ecossocialista", Type: discordgo.ChannelTypeGuildForum},
-				{Name: "acao-direta-e-brigadas", Type: discordgo.ChannelTypeGuildForum},
-				{Name: "soberania-tecnologica-e-rizoma", Type: discordgo.ChannelTypeGuildForum},
-				{Name: "arte-cultura-e-memetica", Type: discordgo.ChannelTypeGuildForum},
-				{Name: "agroecologia-e-territorio", Type: discordgo.ChannelTypeGuildForum},
+				{Name: "🌐│i-mundo", Type: discordgo.ChannelTypeGuildForum},
+				{Name: "🏛️│ii-sociedade", Type: discordgo.ChannelTypeGuildForum},
+				{Name: "⚙️│iii-cosmotecnica", Type: discordgo.ChannelTypeGuildForum},
+				{Name: "⚔️│iv-praxis", Type: discordgo.ChannelTypeGuildForum},
+				{Name: "🔥│v-espirito", Type: discordgo.ChannelTypeGuildForum},
 			},
 		},
 		{
-			Name: "💬 2. CANAIS COMUNS",
+			Name: "💬 CANAIS COMUNS",
 			Channels: []ChannelSpec{
-				{Name: "bate-papo-geral", Type: discordgo.ChannelTypeGuildText},
-				{Name: "midia-e-compartilhamento", Type: discordgo.ChannelTypeGuildText},
-				{Name: "🔊 Praça Pública (Voz)", Type: discordgo.ChannelTypeGuildVoice},
+				{Name: "📢│anuncios", Type: discordgo.ChannelTypeGuildText},
+				{Name: "🌱│apresentacoes", Type: discordgo.ChannelTypeGuildText},
+				{Name: "💬│chat-comum", Type: discordgo.ChannelTypeGuildText},
+				{Name: "🎭│chat-memetico", Type: discordgo.ChannelTypeGuildText},
+				{Name: "📐│chat-serio", Type: discordgo.ChannelTypeGuildText},
+				{Name: "🍄│micorriza", Type: discordgo.ChannelTypeGuildText},
 			},
 		},
 		{
-			Name: "📖 3. FRENTES DE ESTUDO",
+			Name: "🎨 CANAIS CULTURAIS",
 			Channels: []ChannelSpec{
-				{Name: "clube-de-leitura", Type: discordgo.ChannelTypeGuildText},
-				{Name: "debates-ideologicos", Type: discordgo.ChannelTypeGuildText},
-				{Name: "🔊 Sala de Estudos (Voz)", Type: discordgo.ChannelTypeGuildVoice},
+				{Name: "📰│noticias", Type: discordgo.ChannelTypeGuildText},
+				{Name: "📹│videos", Type: discordgo.ChannelTypeGuildText},
+				{Name: "🎮│jogos", Type: discordgo.ChannelTypeGuildText},
+				{Name: "🎬│cinema", Type: discordgo.ChannelTypeGuildText},
+				{Name: "🎵│musica", Type: discordgo.ChannelTypeGuildText},
+				{Name: "📚│literatura", Type: discordgo.ChannelTypeGuildText},
 			},
 		},
 		{
-			Name: "⚔️ 4. FRENTES DE ATUAÇÃO",
+			Name: "📖 FRENTES DE ESTUDO",
 			Channels: []ChannelSpec{
-				{Name: "brigadas-e-acao-direta", Type: discordgo.ChannelTypeGuildText},
-				{Name: "agitprop-e-comunicacao", Type: discordgo.ChannelTypeGuildText},
-				{Name: "imprensa-spore-ops", Type: discordgo.ChannelTypeGuildText},
+				{Name: "🏛️│filosofia", Type: discordgo.ChannelTypeGuildText},
+				{Name: "🚩│politica", Type: discordgo.ChannelTypeGuildText},
+				{Name: "🌿│ecologia", Type: discordgo.ChannelTypeGuildText},
+				{Name: "⏳│historia", Type: discordgo.ChannelTypeGuildText},
+				{Name: "🧠│humanidades", Type: discordgo.ChannelTypeGuildText},
+				{Name: "🪞│psicologia", Type: discordgo.ChannelTypeGuildText},
+				{Name: "💻│tecnologia", Type: discordgo.ChannelTypeGuildText},
+				{Name: "🔧│engenharia", Type: discordgo.ChannelTypeGuildText},
 			},
 		},
 		{
-			Name: "🏛️ 5. INSTITUCIONAL E COMUNICAÇÃO",
+			Name: "⚔️ FRENTES DE ATUAÇÃO",
 			Channels: []ChannelSpec{
-				{Name: "anuncios-oficiais", Type: discordgo.ChannelTypeGuildText},
-				{Name: "fale-com-a-micelia", Type: discordgo.ChannelTypeGuildText},
-				{Name: "memorias-da-frente", Type: discordgo.ChannelTypeGuildText},
+				{Name: "🍄│nucleo-urupe", Type: discordgo.ChannelTypeGuildText},
+				{Name: "🌾│rizoma", Type: discordgo.ChannelTypeGuildText},
+				{Name: "📱│app-urupe", Type: discordgo.ChannelTypeGuildText},
+				{Name: "🧫│spore-ops", Type: discordgo.ChannelTypeGuildText},
+				{Name: "🐝│jatai-ops", Type: discordgo.ChannelTypeGuildText},
 			},
 		},
 	}
@@ -286,7 +298,7 @@ func handleProvision5x5(s *discordgo.Session, guildID string) (string, error) {
 	createdCategories := 0
 	createdChannels := 0
 
-	// 1. Criar canais fora de categoria (Topo)
+	// 1. Criar canal raiz (Topo)
 	for _, chSpec := range topChannels {
 		_, err := s.GuildChannelCreateComplex(guildID, discordgo.GuildChannelCreateData{
 			Name: chSpec.Name,
@@ -320,5 +332,5 @@ func handleProvision5x5(s *discordgo.Session, guildID string) (string, error) {
 		}
 	}
 
-	return fmt.Sprintf(" Matriz Enxuta da Rede Urupê provisionada com sucesso no Discord!\n- **2 Canais de Topo** (#leia-me e #quarentena)\n- **%d Categorias** criadas\n- **%d Canais & Fóruns** estruturados (com 5 Fóruns Temáticos e Canais de Estudo/Atuação/Comunicação).", createdCategories, createdChannels), nil
+	return fmt.Sprintf(" Matriz do Discord da Frente Urupê provisionada com sucesso!\n- **1 Canal Raiz** (#📜│leia-me)\n- **%d Categorias** criadas\n- **%d Canais & Fóruns** estruturados (no formato #emoji│nome-do-canal, com os 5 Fóruns do Manifesto e zero voz).", createdCategories, createdChannels), nil
 }
