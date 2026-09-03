@@ -48,5 +48,6 @@ Detalhamento profundo da Trindade de Produtos da Frente Urupê.
 ## 🏛️ 4. Matriz do Discord & Bot (`docs/04-discord/`)
 Estrutura enxuta do servidor do Discord e integração com a mascote IA **Micélia 🍄**.
 
+- 📄 [micelia_micelium_discord_deepdive.md](file:///home/ale/Projects/rede-urupe/docs/04-discord/micelia_micelium_discord_deepdive.md) — **[Deep Dive]** Estudo profundo da cognição da Micélia, motor Micélium e o Bot.
 - 📄 [matriz_discord_urupe.md](file:///home/ale/Projects/rede-urupe/docs/04-discord/matriz_discord_urupe.md) — A matriz enxuta oficial (`#emoji│nome-do-canal`), 5 Fóruns do Manifesto e zero voz.
 - 📄 [integracao_nucleo_discord.md](file:///home/ale/Projects/rede-urupe/docs/04-discord/integracao_nucleo_discord.md) — Especificação da ponte cibernética entre o backend Go, o Console Admin e o Discord.
