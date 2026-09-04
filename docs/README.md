@@ -21,6 +21,7 @@ graph TD
 ## 📜 1. Manifesto & Fundamentação Teórica (`docs/01-manifesto/`)
 Documentos que definem o imperativo histórico e a visão ecossocialista da Frente Urupê.
 
+- 📄 [manifesto_ecossocialista.pdf](file:///home/ale/Projects/rede-urupe/docs/01-manifesto/manifesto_ecossocialista.pdf) — **[PDF do Manifesto]** Documento mestre das 5 Dimensões Ontológicas em formato PDF.
 - 📄 [manifesto.md](file:///home/ale/Projects/rede-urupe/docs/01-manifesto/manifesto.md) — O Manifesto Ecossocialista por uma Soberania Digital Popular.
 - 📄 [resumo.md](file:///home/ale/Projects/rede-urupe/docs/01-manifesto/resumo.md) — Síntese executiva das teses fundacionais.
 - 📄 [metodo.md](file:///home/ale/Projects/rede-urupe/docs/01-manifesto/metodo.md) — O método de organização popular e soberania tecnológica.
@@ -31,6 +32,7 @@ Documentos que definem o imperativo histórico e a visão ecossocialista da Fren
 ## 🏗️ 2. Arquitetura & Engenharia (`docs/02-arquitetura/`)
 Desenho técnico da infraestrutura descentralizada, backend Go e nó Rizoma P2P.
 
+- 📄 [visual_identity_guidelines.md](file:///home/ale/Projects/rede-urupe/docs/02-arquitetura/visual_identity_guidelines.md) — **[Manual de Identidade Visual]** Tokens de cor OKLCH, tipografia e regras estéticas Gruvbox.
 - 📄 [convocacao.pdf](file:///home/ale/Projects/rede-urupe/docs/02-arquitetura/convocacao.pdf) — **[Asset Pôster Convocação]** PDF Agitprop v3 L-to-R com manifesto e arquitetura em 1 página.
 - 📄 [ramos_do_ecossistema.md](file:///home/ale/Projects/rede-urupe/docs/02-arquitetura/ramos_do_ecossistema.md) — **[Definição de Ramos]** Estrutura dos 2 ramos principais (Núcleo Urupê e App Urupê).
 - 📄 [revolucao_rede_urupe.md](file:///home/ale/Projects/rede-urupe/docs/02-arquitetura/revolucao_rede_urupe.md) — Manifesto técnico e revolução da arquitetura da malha.
