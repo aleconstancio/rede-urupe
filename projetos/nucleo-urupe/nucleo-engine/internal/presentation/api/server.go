@@ -93,6 +93,8 @@ func (s *Server) Start() {
 	mux.HandleFunc("/api/manifesto/active", handleManifestoActiveGet(s.repo))
 	mux.HandleFunc("/api/manifesto/save", handleManifestoVersionSave(s.repo))
 	mux.HandleFunc("/api/manifesto/activate", handleManifestoVersionActivate(s.repo))
+	mux.HandleFunc("/api/micelia/memories", handleMiceliaMemoriesList(s.repo, s.cfg.TargetChannelID))
+	mux.HandleFunc("/api/micelia/memory/delete", handleMiceliaMemoryDelete(s.repo))
 
 	// Serve Quartz knowledge map at /knowledge/*
 	knowledgePath := "internal/presentation/web/knowledge_dist"

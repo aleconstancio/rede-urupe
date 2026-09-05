@@ -151,3 +151,9 @@ func (r *Repository) ListMessageAnnotations(channelID string, limit int) ([]Mess
 	}
 	return out, nil
 }
+
+// DeleteMessageAnnotation removes a specific metacognitive annotation by message_id.
+func (r *Repository) DeleteMessageAnnotation(messageID string) error {
+	_, err := r.db.Exec("DELETE FROM message_annotations WHERE message_id = ?", messageID)
+	return err
+}
