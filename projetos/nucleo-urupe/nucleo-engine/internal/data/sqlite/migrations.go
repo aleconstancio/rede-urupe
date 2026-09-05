@@ -1,12 +1,29 @@
 package sqlite
 
 import (
+	_ "embed"
 	"log"
 )
 
-// initSchema runs after schema migrations to seed initial data.
-// The schema is now applied via db.MigrateFromFS() in repository.go.
+//go:embed migrations/000001_initial_schema.up.sql
+var initialSchemaSQL string
+
+//go:embed migrations/000002_showcase_projects.up.sql
+var showcaseProjectsSQL string
+
+//go:embed migrations/000003_active_channels.up.sql
+var activeChannelsSQL string
+
 func (r *Repository) initSchema() error {
+	if _, err := r.db.Exec(initialSchemaSQL); err != nil {
+		log.Printf("[Migrations] Warning: failed to apply initialSchemaSQL: %v", err)
+	}
+	if _, err := r.db.Exec(showcaseProjectsSQL); err != nil {
+		log.Printf("[Migrations] Warning: failed to apply showcaseProjectsSQL: %v", err)
+	}
+	if _, err := r.db.Exec(activeChannelsSQL); err != nil {
+		log.Printf("[Migrations] Warning: failed to apply activeChannelsSQL: %v", err)
+	}
 	return r.seedInitialData()
 }
 
@@ -17,10 +34,10 @@ func (r *Repository) seedInitialData() error {
 	if err := r.ensureManifestoTables(); err != nil {
 		return err
 	}
-	if err := r.ensureV33PersonaSeed(); err != nil {
+	if err := r.ensureAIreliusSeed(); err != nil {
 		return err
 	}
-	if err := r.ensureAIreliusSeed(); err != nil {
+	if err := r.ensureV33PersonaSeed(); err != nil {
 		return err
 	}
 	if err := r.ensureCMSArticlesSeed(); err != nil {

@@ -104,6 +104,17 @@ func main() {
 	go compactor.Start(ctx)
 	go forumWorker.Start(ctx)
 
+	if cfg.DiscordToken == "" {
+		log.Printf("[AVISO] DISCORD_TOKEN não configurado. Rodando em Modo Local Offline (apenas servidor Web/Dashboard em http://localhost:%s).", cfg.DashboardPort)
+		log.Printf("[INFO] Para conectar a Micélia 🍄 ao Discord, adicione DISCORD_TOKEN e TARGET_GUILD_ID no seu arquivo .env.")
+		
+		sc := make(chan os.Signal, 1)
+		signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt)
+		<-sc
+		log.Println("[INFO] Encerrando servidor local do Núcleo Urupê.")
+		return
+	}
+
 	dg, err := discordgo.New("Bot " + cfg.DiscordToken)
 	if err != nil {
 		log.Fatalf("Error creating Discord session: %v", err)

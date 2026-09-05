@@ -16,6 +16,6 @@ CREATE TABLE IF NOT EXISTS showcase_projects (
     updated_at TEXT DEFAULT (datetime('now'))
 );
 
-CREATE INDEX idx_showcase_projects_slug ON showcase_projects(slug);
-CREATE INDEX idx_showcase_projects_category ON showcase_projects(category);
-CREATE INDEX idx_showcase_projects_sort ON showcase_projects(sort_order);
+CREATE INDEX IF NOT EXISTS idx_showcase_projects_slug ON showcase_projects(slug);
+CREATE INDEX IF NOT EXISTS idx_showcase_projects_category ON showcase_projects(category);
+CREATE INDEX IF NOT EXISTS idx_showcase_projects_sort ON showcase_projects(sort_order);

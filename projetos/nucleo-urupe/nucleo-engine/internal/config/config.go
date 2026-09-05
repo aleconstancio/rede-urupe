@@ -80,10 +80,10 @@ func Load() (Config, error) {
 	}
 
 	if cfg.DiscordToken == "" {
-		return Config{}, fmt.Errorf("DISCORD_TOKEN environment variable is required")
+		fmt.Println("[CONFIG] DISCORD_TOKEN não fornecido. O bot do Discord permanecerá inativo, mas a Dashboard Web será iniciada.")
 	}
 	if cfg.OpenRouterAPIKey == "" && cfg.GeminiAPIKey == "" {
-		return Config{}, fmt.Errorf("either OPENROUTER_API_KEY or GEMINI_API_KEY environment variable is required")
+		fmt.Println("[CONFIG] Chaves de LLM não fornecidas (GEMINI_API_KEY ou OPENROUTER_API_KEY). O motor cognitivo da Micélia operará em modo passivo local.")
 	}
 	cfg.MultiChannel = cfg.TargetChannelID == ""
 	if cfg.OpenRouterModel == "" {

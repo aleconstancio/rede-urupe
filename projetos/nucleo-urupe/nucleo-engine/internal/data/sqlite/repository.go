@@ -52,10 +52,14 @@ func (r *Repository) getExecutor(tx *sql.Tx) executor {
 func NewRepository(dbPath string) (*Repository, error) {
 	// If path is a simple filename, move it to the data/ directory
 	if !strings.Contains(dbPath, "/") && !strings.Contains(dbPath, "\\") {
-		if err := os.MkdirAll("data", 0755); err != nil {
-			return nil, fmt.Errorf("failed to create data directory: %w", err)
-		}
 		dbPath = filepath.Join("data", dbPath)
+	}
+
+	dir := filepath.Dir(dbPath)
+	if dir != "" && dir != "." {
+		if err := os.MkdirAll(dir, 0755); err != nil {
+			return nil, fmt.Errorf("failed to create directory %s: %w", dir, err)
+		}
 	}
 
 	db, err := sql.Open("sqlite3", dbPath)
