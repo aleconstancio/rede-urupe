@@ -1,35 +1,39 @@
-# 🌲 Ramos do Ecossistema Rede Urupê
+# 🌲 Ramos & Motor da Rede Urupê
 
-> **"A separação clara entre a Plataforma Operacional de Governança (Núcleo Urupê) e a Experiência Soberana Descentralizada do Militante (App Urupê)."**
+> **"O App Urupê é a interface visual soberana na mão do militante. O Rizoma Engine é o motor P2P em Rust que impulsiona o App Urupê e os nós comunitários Rizoma Box."**
 
 ---
 
-# 📐 Mapeamento dos 2 Ramos Principais
+# 📐 A Relação Entre Núcleo, App Urupê e Rizoma Engine
 
 ```mermaid
 graph TD
-    REDE[🌲 REDE URUPÊ] --> RAMO1[1. 🏛️ NÚCLEO URUPÊ: QG & Operações]
-    REDE --> RAMO2[2. 📱 APP URUPÊ: Experiência Soberana]
+    subgraph 1. 🏛️ RAMO NÚCLEO URUPÊ (QG & GOVERNANÇA)
+        NU[🏛️ Núcleo Urupê: Go 1.26 + Svelte 5 + Web2/HTTPS]
+        NU --> SPORE[🧫 Spore Ops 🍄: Marketing Digital & Agitprop]
+        NU --> JATAI[🐝 Jataí Ops 🐝: Automação B2B & Fundo Urupê]
+    end
 
-    RAMO1 --> SPORE[🧫 Spore Ops 🍄: Guerrilha Digital, Agitprop & Clipping]
-    RAMO1 --> JATAI[🐝 Jataí Ops 🐝: Frotas B2B & Autofinanciamento do Fundo Urupê]
+    subgraph 2. 📱 RAMO APP URUPÊ (SUPER-APP & INTERFACE)
+        APP[📱 App Urupê: Interface Flutter GPU no Mobile / Svelte 5 na Web]
+    end
 
-    RAMO2 --> RIZOMA[🌾 Server Rizoma: Infraestrutura P2P Local-First & Rizoma Box]
-    RAMO2 --> MICELIA[🍄 IA Micélia: Inteligência Companheira, Persona & Chat P2P]
+    subgraph 3. 🌾 RIZOMA ENGINE (O MOTOR P2P EM RUST CORE)
+        RZ[🌾 Rizoma Engine: Core Rust + Criptografia MLS + P2P iroh/libp2p + CRDTs]
+        RZ -->|Embarcado via FFI C-ABI| APP
+        RZ -->|Firmware Nativo| BOX[📦 Rizoma Box: Nós Comunitários Offline]
+    end
 ```
 
 ---
 
-## 1. 🏛️ Ramo NÚCLEO URUPÊ (QG Operacional, Institucional & Governança)
-* **Natureza:** Plataforma de Controle e Governança da Frente Urupê (Go 1.26 + Svelte 5).
-* **Escopo:**
-  - **Spore Ops 🍄:** Central de inteligência memética, agitação & propaganda popular, clipping de imprensa e disparos de mídias.
-  - **Jataí Ops 🐝:** Central de frotas industriais B2B (*Vico ⚖️*, RH) e controle de caixa do **Fundo Urupê**.
+## 🔑 Esclarecimento Arquitetural
 
----
+1. **O Rizoma continua?**
+   - **SIM! O Rizoma é a espinha dorsal de toda a nossa infraestrutura.**
+   - O Rizoma **não é uma interface separada**, mas sim o **Rizoma Engine** — a biblioteca central em **Rust** que cuida de toda a criptografia, sincronização de dados CRDT e rede P2P sem servidores corporativos.
 
-## 2. 📱 Ramo APP URUPÊ (Experiência Soberana do Militante & P2P)
-* **Natureza:** Super-App Popular descentralizado na mão do trabalhador (Svelte 5 / Tauri v2 + Rust).
-* **Escopo:**
-  - **Server Rizoma 🌾:** A infraestrutura P2P local-first em Rust (criptografia Ed25519, libp2p/iroh, rede mesh offline e nós comunitários *Rizoma Box*).
-  - **IA Micélia 🍄:** A assistente inteligente local e companheira pedagógica que apoia o militante no chat P2P, organiza mídias e correlaciona saberes sem extração de dados corporativos.
+2. **Como os 3 Pilares se Conectam:**
+   - **🏛️ Núcleo Urupê:** É a plataforma de controle político da **organização ecossocialista** (Go + Svelte 5), gerando a receita (*Jataí Ops*) e a comunicação de rua (*Spore Ops*).
+   - **📱 App Urupê:** É o **Super-App popular** que o trabalhador instala no celular (UI Flutter/Svelte).
+   - **🌾 Rizoma Engine:** É o **motor P2P em Rust** que roda **dentro do App Urupê** e nos micro-computadores comunitários (**Rizoma Box**).
