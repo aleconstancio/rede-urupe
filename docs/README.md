@@ -44,6 +44,7 @@ Desenho técnico da infraestrutura descentralizada, backend Go e nó Rizoma P2P.
 ## 📱 3. Produtos do Ecossistema (`docs/03-produtos/`)
 Detalhamento profundo da Trindade de Produtos da Frente Urupê.
 
+- 📄 [arquitetura_app_urupe.md](file:///home/ale/Projects/rede-urupe/docs/03-produtos/arquitetura_app_urupe.md) — **[Consenso Técnico App Urupê]** Arquitetura Rust Core + Flutter Mobile + Svelte 5 Web + P2P Iroh.
 - 📄 [deep_dive_product_pillars.md](file:///home/ale/Projects/rede-urupe/docs/03-produtos/deep_dive_product_pillars.md) — Análise minuciosa dos pilares: Núcleo Urupê, Rizoma Engine e App Urupê.
 - 📄 [proposta-teorica-e-arquitetura.md](file:///home/ale/Projects/rede-urupe/docs/03-produtos/proposta-teorica-e-arquitetura.md) — Conexão entre a teoria ecossocialista e os módulos de software.
 
