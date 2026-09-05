@@ -16,6 +16,7 @@ import (
 type Config struct {
 	DiscordToken      string
 	OpenRouterAPIKey  string
+	OpenRouterBaseURL string
 	OpenRouterModel   string
 	ResponseFallbacks []string
 	SummaryFallbacks  []string
@@ -51,7 +52,8 @@ func Load() (Config, error) {
 
 	cfg := Config{
 		DiscordToken:      strings.TrimSpace(os.Getenv("DISCORD_TOKEN")),
-		OpenRouterAPIKey:  firstNonEmpty("OPENROUTER_API_KEY", "LLM_API_KEY"),
+		OpenRouterAPIKey:  firstNonEmpty("OPENROUTER_API_KEY", "LLM_API_KEY", "OPENCODE_API_KEY"),
+		OpenRouterBaseURL: defaultString("OPENROUTER_BASE_URL", defaultString("LLM_BASE_URL", defaultString("OPENCODE_BASE_URL", "https://openrouter.ai/api/v1"))),
 		OpenRouterModel:   firstNonEmpty("OPENROUTER_MODEL", "LLM_MODEL"),
 		ResponseFallbacks: defaultCSVKeys([]string{"OPENROUTER_RESPONSE_FALLBACK_MODELS", "OPENROUTER_FALLBACK_MODELS"}, defaultResponseFallbackModels()),
 		SummaryFallbacks:  defaultCSVKeys([]string{"OPENROUTER_SUMMARY_FALLBACK_MODELS"}, defaultSummaryFallbackModels()),

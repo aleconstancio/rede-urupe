@@ -11,6 +11,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strings"
 	"time"
 )
 
@@ -20,6 +21,9 @@ type OpenRouterProvider struct {
 }
 
 func NewOpenRouterProvider(config Config) *OpenRouterProvider {
+	if config.OpenRouterBaseURL == "" {
+		config.OpenRouterBaseURL = "https://openrouter.ai/api/v1"
+	}
 	return &OpenRouterProvider{
 		config: config,
 		http: &http.Client{
@@ -43,7 +47,8 @@ func (p *OpenRouterProvider) Complete(ctx context.Context, messages []Message, s
 		return Completion{}, fmt.Errorf("failed to marshal request: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", "https://openrouter.ai/api/v1/chat/completions", bytes.NewReader(data))
+	endpoint := fmt.Sprintf("%s/chat/completions", strings.TrimSuffix(p.config.OpenRouterBaseURL, "/"))
+	req, err := http.NewRequestWithContext(ctx, "POST", endpoint, bytes.NewReader(data))
 	if err != nil {
 		return Completion{}, fmt.Errorf("failed to create request: %w", err)
 	}

@@ -62,7 +62,7 @@ func TestAssembleReplyPromptIncludesVibeMatchingAndMonologueContract(t *testing.
 	a := &PayloadAssembler{}
 	resolved := minotaur.ResolvedPersona{
 		Identity: minotaur.DefaultCoreIdentityProfile(),
-		Overlay:  minotaur.DefaultPersonaOverlays()[0],
+		Overlays: []minotaur.PersonaOverlay{minotaur.DefaultPersonaOverlays()[0]},
 	}
 	prompt := a.AssembleReplyPrompt(resolved, false)
 

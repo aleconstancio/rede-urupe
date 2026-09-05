@@ -24,6 +24,9 @@ func (r *Repository) initSchema() error {
 	if _, err := r.db.Exec(activeChannelsSQL); err != nil {
 		log.Printf("[Migrations] Warning: failed to apply activeChannelsSQL: %v", err)
 	}
+	_, _ = r.db.Exec("ALTER TABLE pending_turns ADD COLUMN content TEXT NOT NULL DEFAULT ''")
+	_, _ = r.db.Exec("ALTER TABLE pending_turns ADD COLUMN reason TEXT NOT NULL DEFAULT ''")
+	_, _ = r.db.Exec("ALTER TABLE pending_turns ADD COLUMN error TEXT NOT NULL DEFAULT ''")
 	return r.seedInitialData()
 }
 
