@@ -133,6 +133,19 @@ func main() {
 	dg.AddHandler(handler.OnGuildMemberRemove)
 
 	if err := dg.Open(); err != nil {
+		if strings.Contains(err.Error(), "4014") {
+			log.Printf("\n==========================================================================")
+			log.Printf("[ERRO 4014 - PRIVILEGED INTENTS NECESSÁRIAS]")
+			log.Printf("O Discord recusou a conexão porque o Bot precisa de permissões especiais.")
+			log.Printf("Para resolver em 10 segundos:")
+			log.Printf("1. Acesse: https://discord.com/developers/applications")
+			log.Printf("2. Selecione o bot e clique em 'Bot' no menu à esquerda.")
+			log.Printf("3. Role até 'Privileged Gateway Intents' e ATIVE os botões:")
+			log.Printf("   [x] MESSAGE CONTENT INTENT")
+			log.Printf("   [x] SERVER MEMBERS INTENT")
+			log.Printf("4. Salve as alterações e execute o bot novamente!")
+			log.Printf("==========================================================================\n")
+		}
 		log.Fatalf("Error opening connection: %v", err)
 	}
 	defer dg.Close()
