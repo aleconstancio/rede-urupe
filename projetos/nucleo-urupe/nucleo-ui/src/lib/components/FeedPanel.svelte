@@ -21,7 +21,7 @@
                 <div class="entry" class:entry-bot={msg.is_bot} class:entry-bot-latest={msg.is_latest_bot}>
                     <div class="entry-meta">
                         <span class="entry-author">@{msg.author || 'Desconhecido'}</span>
-                        <span class="entry-badge" class:bot-badge={msg.is_bot}>{msg.is_bot ? 'TALOS' : 'MEMBRO'}</span>
+                        <span class="entry-badge" class:bot-badge={msg.is_bot}>{msg.is_bot ? 'MICÉLIA 🍄' : 'MEMBRO'}</span>
                         {#if msg.category && msg.category !== 'uncategorized'}
                             <span class="entry-archive">📦 {msg.category}</span>
                         {/if}

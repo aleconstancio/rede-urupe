@@ -89,25 +89,37 @@ func Load() (Config, error) {
 	}
 	cfg.MultiChannel = cfg.TargetChannelID == ""
 	if cfg.OpenRouterModel == "" {
-		cfg.OpenRouterModel = "meta-llama/llama-3.3-70b-instruct:free"
+		cfg.OpenRouterModel = "mimo-v2.5-free"
 	}
 	if cfg.GatewayGateModel == "" {
-		cfg.GatewayGateModel = firstNonEmpty("GEMINI_METACOGNITION_MODEL")
+		cfg.GatewayGateModel = firstNonEmpty("GEMINI_GATEWAY_GATE_MODEL", "GEMINI_METACOGNITION_MODEL")
 	}
 	if cfg.GatewayGateModel == "" {
-		cfg.GatewayGateModel = "gemini-3.1-flash-lite"
+		if cfg.OpenRouterAPIKey != "" {
+			cfg.GatewayGateModel = cfg.OpenRouterModel
+		} else {
+			cfg.GatewayGateModel = "gemini-3.1-flash-lite"
+		}
 	}
 	if cfg.GatewayReplyModel == "" {
-		cfg.GatewayReplyModel = firstNonEmpty("GEMINI_SYNTHESIS_MODEL")
+		cfg.GatewayReplyModel = firstNonEmpty("GEMINI_GATEWAY_REPLY_MODEL", "GEMINI_SYNTHESIS_MODEL")
 	}
 	if cfg.GatewayReplyModel == "" {
-		cfg.GatewayReplyModel = "gemini-3.1-flash-lite"
+		if cfg.OpenRouterAPIKey != "" {
+			cfg.GatewayReplyModel = cfg.OpenRouterModel
+		} else {
+			cfg.GatewayReplyModel = "gemini-3.1-flash-lite"
+		}
 	}
 	if cfg.MemoryModel == "" {
-		cfg.MemoryModel = firstNonEmpty("GEMINI_METACOGNITION_MODEL")
+		cfg.MemoryModel = firstNonEmpty("GEMINI_MEMORY_MODEL", "GEMINI_METACOGNITION_MODEL")
 	}
 	if cfg.MemoryModel == "" {
-		cfg.MemoryModel = "gemini-3.1-flash-lite"
+		if cfg.OpenRouterAPIKey != "" {
+			cfg.MemoryModel = cfg.OpenRouterModel
+		} else {
+			cfg.MemoryModel = "gemini-3.1-flash-lite"
+		}
 	}
 	if cfg.MaxOutputTokens < 64 {
 		cfg.MaxOutputTokens = 64
