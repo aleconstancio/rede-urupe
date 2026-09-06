@@ -97,11 +97,20 @@ func (w *GatewayWorker) Start(ctx context.Context) {
 	}
 }
 
+func (w *GatewayWorker) getChannelID(ev TriggerEvent) string {
+	if ev.ChannelID != "" {
+		return ev.ChannelID
+	}
+	return w.channelID
+}
+
 func (w *GatewayWorker) processEvent(ctx context.Context, ev TriggerEvent) error {
 	ctx, cancel := context.WithTimeout(ctx, 90*time.Second)
 	defer cancel()
 
-	if !w.isChannelActive(ev.ChannelID) {
+	channelID := w.getChannelID(ev)
+
+	if !w.isChannelActive(channelID) {
 		return nil
 	}
 	if w.state == nil {
@@ -119,7 +128,7 @@ func (w *GatewayWorker) processEvent(ctx context.Context, ev TriggerEvent) error
 	}
 
 	// Load memory context
-	working, err := w.repo.GetMessagesByRowRange(w.channelID, w.state.LastPulseRowID, ev.MessageRowID)
+	working, err := w.repo.GetMessagesByRowRange(channelID, w.state.LastPulseRowID, ev.MessageRowID)
 	if err != nil {
 		return fmt.Errorf("load working memory: %w", err)
 	}
@@ -127,7 +136,7 @@ func (w *GatewayWorker) processEvent(ctx context.Context, ev TriggerEvent) error
 		working = working[len(working)-40:]
 	}
 
-	payload, err := w.assembler.BuildPromptContext(w.channelID, working, ev.Timestamp)
+	payload, err := w.assembler.BuildPromptContext(channelID, working, ev.Timestamp)
 	if err != nil {
 		return err
 	}
@@ -136,7 +145,7 @@ func (w *GatewayWorker) processEvent(ctx context.Context, ev TriggerEvent) error
 	switch {
 	case ev.IsReactive:
 		if err := w.runReactiveTurn(ctx, ev, payload, false); err != nil {
-			_ = w.messenger.SendAndStoreReply(w.channelID, ev.MessageID, "minha api não respondeu depois eu respondo :bcatdespair:", "", "", nil)
+			_ = w.messenger.SendAndStoreReply(channelID, ev.MessageID, "minha api não respondeu depois eu respondo :bcatdespair:", "", "", nil)
 			return err
 		}
 		turnCompleted = true
@@ -149,7 +158,7 @@ func (w *GatewayWorker) processEvent(ctx context.Context, ev TriggerEvent) error
 		}
 		if gateResp.ShouldIntervene {
 			if err := w.runAmbientReply(ctx, ev, payload, gateResp); err != nil {
-				_ = w.messenger.SendAndStoreReply(w.channelID, ev.MessageID, "minha api não respondeu depois eu respondo :bcatdespair:", "", "", nil)
+				_ = w.messenger.SendAndStoreReply(channelID, ev.MessageID, "minha api não respondeu depois eu respondo :bcatdespair:", "", "", nil)
 				return err
 			}
 		}
@@ -169,7 +178,13 @@ func (w *GatewayWorker) processEvent(ctx context.Context, ev TriggerEvent) error
 }
 
 func (w *GatewayWorker) isChannelActive(channelID string) bool {
-	return w.activeChannels[channelID]
+	if channelID == "" || w.activeChannels == nil || len(w.activeChannels) == 0 {
+		return true
+	}
+	if w.activeChannels[channelID] || w.activeChannels[""] {
+		return true
+	}
+	return false
 }
 
 func (w *GatewayWorker) AddChannel(channelID string) {

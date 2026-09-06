@@ -37,16 +37,17 @@ func (w *GatewayWorker) runBacklogTurn(ctx context.Context, ev TriggerEvent) err
 }
 
 func (w *GatewayWorker) runReactiveTurn(ctx context.Context, ev TriggerEvent, payload PromptContext, isRetry bool) error {
+	channelID := w.getChannelID(ev)
 	if w.messenger.session != nil {
-		_ = w.messenger.session.ChannelTyping(w.channelID)
+		_ = w.messenger.session.ChannelTyping(channelID)
 	}
 	
-	resolved, err := w.resolver.Resolve(ctx, ev.ChannelID, domain.ResolveContext{ChannelID: ev.ChannelID, Mode: "respond"}) 
+	resolved, err := w.resolver.Resolve(ctx, channelID, domain.ResolveContext{ChannelID: channelID, Mode: "respond"}) 
 	if err != nil {
 		log.Printf("[GatewayWorker] Resolver error: %v", err)
 	}
 
-	w.messenger.SyncDiscordProfile(ctx, w.channelID, resolved.Identity)
+	w.messenger.SyncDiscordProfile(ctx, channelID, resolved.Identity)
 
 	completion, err := w.gateway.ExecuteStructured(
 		ctx,
@@ -75,7 +76,8 @@ func (w *GatewayWorker) runReactiveTurn(ctx context.Context, ev TriggerEvent, pa
 }
 
 func (w *GatewayWorker) runAmbientGate(ctx context.Context, ev TriggerEvent, payload PromptContext) (*GateResponse, error) {
-	resolved, err := w.resolver.Resolve(ctx, ev.ChannelID, domain.ResolveContext{ChannelID: ev.ChannelID, Mode: "gate"})
+	channelID := w.getChannelID(ev)
+	resolved, err := w.resolver.Resolve(ctx, channelID, domain.ResolveContext{ChannelID: channelID, Mode: "gate"})
 	if err != nil {
 		log.Printf("[GatewayWorker] Resolver error in gate: %v", err)
 	}
@@ -98,16 +100,17 @@ func (w *GatewayWorker) runAmbientGate(ctx context.Context, ev TriggerEvent, pay
 }
 
 func (w *GatewayWorker) runAmbientReply(ctx context.Context, ev TriggerEvent, payload PromptContext, gateResp *GateResponse) error {
+	channelID := w.getChannelID(ev)
 	if w.messenger.session != nil {
-		_ = w.messenger.session.ChannelTyping(w.channelID)
+		_ = w.messenger.session.ChannelTyping(channelID)
 	}
 
-	resolved, err := w.resolver.Resolve(ctx, ev.ChannelID, domain.ResolveContext{ChannelID: ev.ChannelID, Mode: gateResp.ReasonCode})
+	resolved, err := w.resolver.Resolve(ctx, channelID, domain.ResolveContext{ChannelID: channelID, Mode: gateResp.ReasonCode})
 	if err != nil {
 		log.Printf("[GatewayWorker] Resolver error: %v", err)
 	}
 
-	w.messenger.SyncDiscordProfile(ctx, w.channelID, resolved.Identity)
+	w.messenger.SyncDiscordProfile(ctx, channelID, resolved.Identity)
 
 	completion, err := w.gateway.ExecuteStructured(
 		ctx,
@@ -136,11 +139,12 @@ func (w *GatewayWorker) runAmbientReply(ctx context.Context, ev TriggerEvent, pa
 }
 
 func (w *GatewayWorker) handleReplyError(ev TriggerEvent, completion llm.Completion, err error, isRetry bool) error {
+	channelID := w.getChannelID(ev)
 	errMsg := strings.ToLower(err.Error())
 	if strings.Contains(errMsg, "503") || strings.Contains(errMsg, "overloaded") || strings.Contains(errMsg, "high demand") {
 		log.Printf("[GatewayWorker] Deferring turn due to API overload (%s): %v", completion.Model, err)
 		
-		if saveErr := w.repo.SavePendingTurn(ev.ChannelID, ev.MessageID, ev.MessageRowID, ev.Timestamp, ev.IsReactive, err.Error()); saveErr != nil {
+		if saveErr := w.repo.SavePendingTurn(channelID, ev.MessageID, ev.MessageRowID, ev.Timestamp, ev.IsReactive, err.Error()); saveErr != nil {
 			log.Printf("[GatewayWorker] Failed to save pending turn: %v", saveErr)
 		}
 
@@ -150,7 +154,7 @@ func (w *GatewayWorker) handleReplyError(ev TriggerEvent, completion llm.Complet
 				model = w.replyModel
 			}
 			msg := fmt.Sprintf("Minha API(%s) está sobrecarregada, te respondo quando meu sinal voltar", model)
-			_ = w.messenger.SendAndStoreReply(w.channelID, ev.MessageID, msg, "API Overload Deferral", "{}", nil)
+			_ = w.messenger.SendAndStoreReply(channelID, ev.MessageID, msg, "API Overload Deferral", "{}", nil)
 		}
 		return nil 
 	}
@@ -158,9 +162,10 @@ func (w *GatewayWorker) handleReplyError(ev TriggerEvent, completion llm.Complet
 }
 
 func (w *GatewayWorker) sendReply(ev TriggerEvent, resp *ReplyResponse) error {
+	channelID := w.getChannelID(ev)
 	monologueJSON, _ := json.Marshal(resp.InternalMonologue)
 	ledgerJSON, _ := json.Marshal(resp.GroundingLedger)
-	return w.messenger.SendAndStoreReply(w.channelID, ev.MessageID, resp.ReplyText, string(monologueJSON), string(ledgerJSON), resp.SuggestedReactions)
+	return w.messenger.SendAndStoreReply(channelID, ev.MessageID, resp.ReplyText, string(monologueJSON), string(ledgerJSON), resp.SuggestedReactions)
 }
 
 func (w *GatewayWorker) logBudget(ev TriggerEvent, reason, triggerType, model string, completion llm.Completion) error {
